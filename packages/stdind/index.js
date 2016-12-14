@@ -60,9 +60,8 @@ if (buildIndex > -1) {
       'inherit'  // stderr
     ]
   };
-  console.log('execSync<');
+
   const code = execSync(`docker build -t ${IMAGE_NAME} .`, execOptions);
-  console.log('>execSync');
   process.exit(code);
 }
 
