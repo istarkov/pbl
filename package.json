@@ -4,6 +4,6 @@
   },
   "scripts": {
     "postinstall": "lerna bootstrap",
-    "publish": "lerna publish"
+    "publish": "lerna publish --independent"
   }
 }
