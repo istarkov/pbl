@@ -1,6 +1,6 @@
 {
   "name": "stdind",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "A web-socket server, receives and sends base64 encoded terminal control sequences into socket",
   "main": "index.js",
   "scripts": {
@@ -9,7 +9,7 @@
     "build": "NODE_ENV=production webpack --config './config/webpack.config.production.babel.js' --progress",
     "lint": "eslint src",
     "test": "jest",
-    "prepublish": "in-publish && npm run clean && npm run build || echo ''"
+    "prepublish": "if `npm bin`/in-publish; then npm run clean && npm run lint && npm run build; else echo ''; fi"
   },
   "repository": {
     "type": "git",
