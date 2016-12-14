@@ -29,8 +29,8 @@ RUN yarn
 
 ADD . ./
 
-# Use ./utils/run.js to add pseudotty
-RUN node ./utils/run.js -- yarn run lint
-RUN node ./utils/run.js -- yarn run build
+# Use pty64 to add pseudotty
+RUN `yarn bin`/pty64 -- yarn run lint
+RUN `yarn bin`/pty64 -- yarn run build
 
-CMD /usr/local/bin/dumb-init -- node utils/stdind.js
+CMD /usr/local/bin/dumb-init -- node ./index.js

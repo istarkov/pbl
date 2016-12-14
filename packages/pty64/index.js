@@ -21,7 +21,7 @@ const term = pty.spawn(process.argv[cmdIdx], process.argv.slice(cmdIdx + 1), {
   name: 'xterm-color',
   cols: 80,
   rows: 30,
-  cwd: `${__dirname}/..`,
+  cwd: process.cwd(),
   env: process.env,
 });
 

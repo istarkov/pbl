@@ -1,31 +1,37 @@
+#!/usr/bin/env node
+
 /* eslint-disable comma-dangle, no-console */
+
 /**
- node utils/run.js --base64 -- yarn run lint | node utils/stdind.js
+Build Dockerfile
+node ./index.js --build
+
+`npm bin`/pty64 --base64 -- echo hello | node ./index.js
 
 Run server reading stdin or file content in base 64 format
 providing websocket access on a WS_PORT at WS_PATH path
 
 ```
-node utils/run.js --base64 -- yarn run lint | tee out.txt | node ./utils/stdind.js
+`npm bin`/pty64 --base64 -- echo hello | tee ./build/out.txt | node ./index.js
 ```
 
 or with docker
 
  ```
- node utils/run.js --base64 -- yarn run lint | tee out.txt \
- | docker run -a STDIN -a STDOUT -i --rm -p 4000:4000 --name test-node 'node-test'
+ `npm bin`/pty64 --base64 -- echo hello | tee out.txt \
+ | docker run -a STDIN -a STDOUT -i --rm -p 4000:4000 --name stdind 'stdind'
  ```
 
 or with file
 
 ```
-node ./utils/stdind.js --file out.txt
+node ./index.js --file out.txt
 ```
 
 or with stdin preventing close
 
 ```
-cat out.txt | node ./utils/stdind.js --always
+cat out.txt | node ./index.js --always
 ```
 **/
 const readline = require('readline');
@@ -36,9 +42,29 @@ const { Base64 } = require('js-base64');
 const WebSocketServer = require('ws').Server;
 const { Observable } = require('rxjs');
 const fs = require('fs');
+const execSync = require('child_process').execSync;
 
 const WS_PORT = 4000;
 const WS_PATH = '/ws';
+const IMAGE_NAME = 'stdind';
+
+const buildIndex = process.argv.indexOf('--build');
+
+if (buildIndex > -1) {
+  const execOptions = {
+    encoding: 'utf8',
+    cwd: `${__dirname}`,
+    stdio: [
+      'inherit', // stdin (default)
+      'inherit', // stdout (default)
+      'inherit'  // stderr
+    ]
+  };
+  console.log('execSync<');
+  const code = execSync(`docker build -t ${IMAGE_NAME} .`, execOptions);
+  console.log('>execSync');
+  process.exit(code);
+}
 
 const app = express();
 const server = Server(app);
