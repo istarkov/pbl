@@ -3,7 +3,7 @@
 Wraps base64 encoded output of any command and allow it to be accessed via a WebSocket.
 
 Also starts a web app on 4000 (default) port with full featured terminal window,
-and shows all output as in ordinary terminal app.
+and shows all output in browser as in ordinary terminal app.
 
 ## Install
 
