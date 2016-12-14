@@ -1,6 +1,9 @@
 # stdind
 
-Wraps stdin and allow it to be accessed via a WebSocket.
+Wraps base64 encoded output of any command and allow it to be accessed via a WebSocket.
+
+Also starts a web app on 4000 (default) port with full featured terminal window,
+and shows all output as in ordinary terminal app.
 
 ## Install
 
@@ -17,9 +20,9 @@ pty64 --base64 -- {long running process with output 2 stdout} | stdind
 ```
 
 Open localhost:4000 and see terminal output.
-Be sure server will be closed at stdout end
+Be sure server will be closed at "long running process" end
 
-To not close server at the end just add `--always` argument
+To not close server at the process end just add `--always` argument
 
 ```bash
 pty64 --base64 -- {long running process with output 2 stdout} | stdind --always
