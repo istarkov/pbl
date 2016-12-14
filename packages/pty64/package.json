@@ -1,6 +1,6 @@
 {
   "name": "pty64",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Fork processes with pseudo terminal, allow to output in base64",
   "main": "index.js",
   "scripts": {
