@@ -1,0 +1,31 @@
+{
+  "name": "pty64",
+  "version": "0.1.0",
+  "description": "Fork processes with pseudo terminal, allow to output in base64",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/istarkov/nu.git"
+  },
+  "keywords": [
+    "pty",
+    "base64"
+  ],
+  "author": "istarkov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/istarkov/nu/issues"
+  },
+  "bin": {
+    "pty64": "./index.js"
+  },
+  "homepage": "https://github.com/istarkov/nu#readme",
+  "dependencies": {
+    "chalk": "^1.1.3",
+    "js-base64": "^2.1.9",
+    "pty.js": "^0.3.1"
+  }
+}
