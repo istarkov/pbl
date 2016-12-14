@@ -4,6 +4,8 @@
   },
   "scripts": {
     "postinstall": "lerna bootstrap",
-    "publish": "lerna publish --independent"
+    "publish": "lerna publish --independent",
+    "check": "lerna publish --independent --skip-git --skip-npm",
+    "lint": "lerna run lint"
   }
 }
