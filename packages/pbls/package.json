@@ -1,6 +1,6 @@
 {
   "name": "pbls",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "server version of pbl",
   "main": "index.js",
   "scripts": {
@@ -22,9 +22,9 @@
     "url": "https://github.com/istarkov/pbl/issues"
   },
   "files": [
-    "index.js",
+    "lib",
     "scripts",
-    "lib"
+    "index.js"
   ],
   "bin": {
     "pbls": "./index.js"
