@@ -1,11 +1,10 @@
 {
   "name": "pbls",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "description": "server version of pbl",
   "main": "index.js",
   "scripts": {
-    "lint": "../../node_modules/.bin/eslint .",
-    "postinstall": "./scripts/install.sh"
+    "lint": "../../node_modules/.bin/eslint ."
   },
   "repository": {
     "type": "git",
