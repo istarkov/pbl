@@ -1,6 +1,6 @@
 {
   "name": "pbls",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "server version of pbl",
   "main": "index.js",
   "scripts": {
@@ -23,7 +23,8 @@
   },
   "files": [
     "index.js",
-    "scripts"
+    "scripts",
+    "lib"
   ],
   "bin": {
     "pbls": "./index.js"
@@ -32,7 +33,9 @@
   "dependencies": {
     "chalk": "^1.1.3",
     "minimist": "^1.2.0",
+    "os": "^0.1.1",
     "pty64": "^0.1.0",
-    "stdind": "^0.1.2"
+    "stdind": "^0.1.3",
+    "uuid": "^3.0.1"
   }
 }

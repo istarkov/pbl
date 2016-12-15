@@ -28,6 +28,13 @@ To not close server at the process end just add `--always` argument
 pty64 --base64 -- {long running process with output 2 stdout} | stdind --always
 ```
 
+To send only realtime data
+
+```bash
+pty64 --base64 -- docker stats | stdind --realtime
+```
+
+PS:
 As a long running example you can use provided `stdind-long-running-example`.
 
 ```bash

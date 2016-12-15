@@ -70,6 +70,7 @@ const server = Server(app);
 const wss = new WebSocketServer({ server, path: process.env.WS_PATH || WS_PATH });
 const dataFileIndex = process.argv.indexOf('--file') + 1;
 const preventExit = process.argv.indexOf('--always') > -1;
+const isRealtime = process.argv.indexOf('--realtime') > -1;
 
 const rl = readline.createInterface({
   input: dataFileIndex > 0
@@ -147,7 +148,9 @@ const $realtimeResponses = stdin$
   );
 
 // combine all streams and send results
-const sendStream$ = Observable.merge($initialResponse, $realtimeResponses);
+const sendStream$ = isRealtime
+  ? $realtimeResponses
+  : Observable.merge($initialResponse, $realtimeResponses);
 
 sendStream$
   .subscribe(
