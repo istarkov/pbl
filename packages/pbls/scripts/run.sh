@@ -1,4 +1,5 @@
 #!/bin/bash
+
 function show_help {
   echo 'HELP'
 }
@@ -84,15 +85,41 @@ LOG=/tmp/pbls/logs/"$NAME"
 rm "$LOG" || echo ''
 
 # stop container if already runned
+IS_NGINX_PROXY_STARTED=$(docker inspect --format="{{ .State.Running }}" nginx-proxy  || printf "err" 2> /dev/null)
+IS_NGINX_PROXY_STARTED=$(echo "$IS_NGINX_PROXY_STARTED" | tr -d '\n')
+
+if [ "$IS_NGINX_PROXY_STARTED" = "err" ]; then
+  echo "nginx-proxy does not exist. starting..."
+  docker run -d -p 80:80 -v /var/run/docker.sock:/tmp/docker.sock:ro --name nginx-proxy jwilder/nginx-proxy
+else
+  if [ "$IS_NGINX_PROXY_STARTED" = "false" ]; then
+    echo "nginx-proxy is not running. restarting..."
+    docker rm -f nginx-proxy
+    docker run -d -p 80:80 -v /var/run/docker.sock:/tmp/docker.sock:ro --name nginx-proxy jwilder/nginx-proxy
+  else
+    echo 'nginx-proxy already runned'
+  fi
+fi
+
 docker rm -f "$NAME" || echo ''
 
-"$BIN_FOLDER"/pty64 --base64 -- docker build -t "$NAME" -f "$DOCKERFILE" . \
+"$BIN_FOLDER"/pty64 --base64 -- docker build -t "$NAME:pbl" -f "$DOCKERFILE" --label pbl . \
   | tee "$LOG" \
-  | docker run -a STDIN -a STDOUT -i --rm -p 4000:4000 -e VIRTUAL_HOST="${NAME}.${DOMAIN}" --name stdind 'stdind'
+  | docker run -a STDIN -a STDOUT -i --rm -e VIRTUAL_HOST="${NAME}.${DOMAIN}" --name "$NAME" 'stdind'
 
-if [ ! ${PIPESTATUS[0]} ];
+RES="${PIPESTATUS[0]}"
+
+if [ "$RES" = "0" ];
 then
-  echo 'Starting container';
+  echo ""
+  echo "Starting container"
+  echo "---------------------------------------"
+  echo -e "\033[1mhttp://${NAME}.${DOMAIN}\033[0m"
+  echo "---------------------------------------"
+  echo ""
+  docker run -d -e VIRTUAL_HOST="${NAME}.${DOMAIN}" --name "$NAME" "$NAME:pbl"
 else
-  echo 'NOT GOOD';
+  echo 'ERROR AT BUILD'
+  cat "$LOG" | docker run -a STDIN -a STDOUT -i --rm -e VIRTUAL_HOST="${NAME}.${DOMAIN}" --name "$NAME" 'stdind' ./index.js --always > /dev/null &
+  exit 0
 fi

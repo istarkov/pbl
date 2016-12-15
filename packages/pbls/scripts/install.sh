@@ -22,7 +22,7 @@ function handle_exit {
 trap 'set +x; handle_error $LINENO $BASH_COMMAND' ERR
 
 # Cleanup before exit on any termination signal
-trap 'set +x; handle_exit' SIGQUIT SIGTERM SIGINT SIGKILL SIGHUP
+trap 'set +x; handle_exit' SIGQUIT SIGTERM SIGINT SIGHUP
 
 # Echo every command being executed
 # set -x

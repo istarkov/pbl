@@ -101,6 +101,13 @@ if (args._[0] === 'run') {
     ]
   };
 
+  console.log(`
+Starting container
+-----------------------------------------------
+${chalk.bold(`http://${name}.${domain}`)}
+-----------------------------------------------
+  `);
+
   const argStr = arg.reduce((r, v) => `${r} -a ${v}`, '');
   const code = execSync(
     `${__dirname}/scripts/run.sh -n ${name} -d ${domain} -f ${dockerFile} ${argStr}`,

@@ -15,13 +15,13 @@ const layoutComponent = ({
       <MatchWithProps
         exactly
         pattern="/"
-        component={() => <div>Hello Big World</div>}
+        component={() => <div>Hello Very Big World</div>}
         state={state}
         dispatch={dispatch}
       />
       <MatchWithProps
         pattern="/:id"
-        component={() => <div>Lala</div>}
+        component={() => <div>Lallla</div>}
         state={state}
         dispatch={dispatch}
       />
