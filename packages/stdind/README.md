@@ -28,6 +28,15 @@ To not close server at the process end just add `--always` argument
 pty64 --base64 -- {long running process with output 2 stdout} | stdind --always
 ```
 
+As a long running example you can use provided `stdind-long-running-example`.
+
+```bash
+pty64 --base64 -- stdind-long-running-example | stdind --always
+```
+
+![example](example.gif)
+
+
 
 ## Contribute
 
