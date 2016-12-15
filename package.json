@@ -1,5 +1,11 @@
 {
   "devDependencies": {
+    "babel-eslint": "^7.1.1",
+    "eslint": "^3.11.1",
+    "eslint-config-airbnb": "^13.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.8.0",
     "lerna": "2.0.0-beta.30"
   },
   "scripts": {
