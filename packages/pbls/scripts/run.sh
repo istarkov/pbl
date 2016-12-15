@@ -71,7 +71,7 @@ cd "$(dirname "$0")" || exit 1
 BIN_FOLDER=$(npm bin)
 cd "$CWD" || exit 1
 
-echo $PWD
+# echo $PWD
 # echo "BUILD_ARGS=${BUILD_ARGS[*]}, name='$NAME', DOCKERFILE='$DOCKERFILE' Leftovers: $@"
 
 # create log folder if not exists

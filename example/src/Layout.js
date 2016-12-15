@@ -27,7 +27,7 @@ const layoutComponent = ({
       />
     </div>
     <div className={theme.footer}>
-      lalalal
+      CecTPa yTky mHe
     </div>
   </div>
 );

@@ -29,9 +29,9 @@ random, and will be provided to user
 examples:
 
 ```bash
-./index.js run --name hello --dir ../../example --build-arg HELLO=WORLD
+pbls run --name hello --dir ../../example --build-arg HELLO=WORLD
 # or without name
-./index.js run --dir ../../example --build-arg HELLO=WORLD
+pbls run --dir ../../example --build-arg HELLO=WORLD
 ```
 
 # Clear:
