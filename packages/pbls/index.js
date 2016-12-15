@@ -57,7 +57,8 @@ if (args._[0] === 'run') {
   const {
     name = uuidV4().slice(0, 8),
     dockerFile = 'Dockerfile',
-    dir
+    dir,
+    arg = [],
   } = args;
 
   if (!dir) {
@@ -79,6 +80,17 @@ if (args._[0] === 'run') {
     process.exit(1);
   }
 
+  const { domain } = cfg.read();
+
+  if (!domain) {
+    console.log(`
+      ${chalk.red('Domain is not specified')}
+      Please run at server ${chalk.bold('pbls init --domain mydomain.com')}
+    `);
+
+    process.exit(1);
+  }
+
   const execOptions = {
     encoding: 'utf8',
     cwd: dir,
@@ -89,6 +101,10 @@ if (args._[0] === 'run') {
     ]
   };
 
-  // const code = execSync('npm run postinstall', execOptions);
-  // process.exit(code);
+  const argStr = arg.reduce((r, v) => `${r} -a ${v}`, '');
+  const code = execSync(
+    `${__dirname}/scripts/run.sh -n ${name} -d ${domain} -f ${dockerFile} ${argStr}`,
+    execOptions
+  );
+  process.exit(code);
 }
