@@ -69,10 +69,10 @@ hterm.TextAttributes.splitWidecharString = function (str) {
       return ctx;
     }
     if (ctx.acc) {
-      context.items.push({str: ctx.acc});
+      ctx.items.push({str: ctx.acc});
       ctx.acc = '';
     }
-    context.items.push({str: rune, wcNode: true});
+    ctx.items.push({str: rune, wcNode: true});
     return ctx;
   }, {items: [], acc: ''});
   if (context.acc) {

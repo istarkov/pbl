@@ -27,3 +27,14 @@ To not close server at the process end just add `--always` argument
 ```bash
 pty64 --base64 -- {long running process with output 2 stdout} | stdind --always
 ```
+
+
+## Contribute
+
+Clone project, to see example run
+
+```
+npm install
+npm run build
+`npm bin`/pty64 --base64 -- ./examples/longRunning.js | ./index.js
+```

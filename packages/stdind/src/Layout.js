@@ -48,7 +48,7 @@ export const layoutHOC = compose(
   themr('layout', layoutStyles),
   // Mini redux + redux-observable
   mapPropsStream((props$) => {
-    const DEBOUNCE_TIME = 100;
+    const DEBOUNCE_TIME = 10;
     const RECONNECT_TIMEOUT = 3000;
     const RECONNECT_ATTEMPTS = 50;
 
@@ -94,7 +94,7 @@ export const layoutHOC = compose(
 
     const buffered$ = subject$
       .buffer(subject$.debounce(() => Observable.interval(DEBOUNCE_TIME)))
-      .do(v => console.log('v', v.map(x => Base64.decode(x))))
+      // .do(v => console.log('v', v.map(x => Base64.decode(x))))
       .delay(ref ? 0 : 100)
       .do(v => v.map(x => ref.write(Base64.decode(x))))
       .startWith(undefined);
