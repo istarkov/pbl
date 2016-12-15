@@ -38,10 +38,9 @@ OPTIND=1         # Reset in case getopts has been used previously in the shell.
 # Initialize our own variables:
 NAME=
 DOCKERFILE="Dockerfile"
-BUILD_ARGS=()
 DOMAIN=
 
-while getopts "h?n:f:a:d:" opt; do
+while getopts "h?n:f:d:" opt; do
     case "$opt" in
     h|\?)
         show_help
@@ -50,8 +49,6 @@ while getopts "h?n:f:a:d:" opt; do
     n)  NAME=$OPTARG
         ;;
     d)  DOMAIN=$OPTARG
-        ;;
-    a)  BUILD_ARGS+=($OPTARG)
         ;;
     f)  DOCKERFILE=$OPTARG
         ;;
@@ -103,7 +100,7 @@ fi
 
 docker rm -f "$NAME" || echo ''
 
-"$BIN_FOLDER"/pty64 --base64 -- docker build -t "$NAME:pbl" -f "$DOCKERFILE" --label pbl . \
+"$BIN_FOLDER"/pty64 --base64 -- docker build -t "$NAME:pbl" -f "$DOCKERFILE" --label pbl "$@" . \
   | tee "$LOG" \
   | docker run -a STDIN -a STDOUT -i --rm -e VIRTUAL_HOST="${NAME}.${DOMAIN}" --name "$NAME" 'stdind'
 

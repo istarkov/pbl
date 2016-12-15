@@ -9,7 +9,9 @@ const uuidV4 = require('uuid/v4');
 
 const args = minimist(process.argv.slice(2));
 
-if (args._[0] === 'install') {
+if (args._[0] === 'init') {
+  const { domain } = args;
+
   const execOptions = {
     encoding: 'utf8',
     cwd: `${__dirname}`,
@@ -20,16 +22,12 @@ if (args._[0] === 'install') {
     ]
   };
 
-  const code = execSync('npm run postinstall', execOptions);
-  process.exit(code);
-}
+  const code = execSync(`${__dirname}/scripts/install.sh`, execOptions);
 
-// ------------------------------------------------------------------------------------
-// ------------------------------------------------------------------------------------
-// ------------------------------------------------------------------------------------
+  if (code) {
+    process.exit(code);
+  }
 
-if (args._[0] === 'init') {
-  const { domain } = args;
   if (!domain) {
     console.log(`
       ${chalk.red('pbls init syntax error')}
@@ -58,7 +56,6 @@ if (args._[0] === 'run') {
     name = uuidV4().slice(0, 8),
     dockerFile = 'Dockerfile',
     dir,
-    arg = [],
   } = args;
 
   if (!dir) {
@@ -108,9 +105,22 @@ ${chalk.bold(`http://${name}.${domain}`)}
 -----------------------------------------------
   `);
 
-  const argStr = arg.reduce((r, v) => `${r} -a ${v}`, '');
+  const argsA = ['--name', '--dockerFile', '--dir']
+    .reduce(
+      (r, v) => {
+        const idx = r.indexOf(v);
+
+        if (idx > -1) {
+          return [...r.slice(0, idx), ...r.slice(idx + 2)];
+        }
+
+        return r;
+      },
+      process.argv.slice(3)
+    );
+
   const code = execSync(
-    `${__dirname}/scripts/run.sh -n ${name} -d ${domain} -f ${dockerFile} ${argStr}`,
+    `${__dirname}/scripts/run.sh -n ${name} -d ${domain} -f ${dockerFile} -- ${argsA.join(' ')}`,
     execOptions
   );
   process.exit(code);

@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Start in tasks/ even if run from root directory
+cd "$(dirname "$0")" || echo 'cant cd'
+
 function cleanup {
   echo 'Cleaning up.'
 }
