@@ -1,6 +1,6 @@
 {
   "name": "pbls",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "server version of pbl",
   "main": "index.js",
   "scripts": {
@@ -23,6 +23,6 @@
   "homepage": "https://github.com/istarkov/pbl#readme",
   "dependencies": {
     "pty64": "^0.1.0",
-    "stdind": "^0.1.1"
+    "stdind": "^0.1.2"
   }
 }
