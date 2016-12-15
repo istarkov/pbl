@@ -34,9 +34,7 @@ As a long running example you can use provided `stdind-long-running-example`.
 pty64 --base64 -- stdind-long-running-example | stdind --always
 ```
 
-![example](example.gif)
-
-
+<img src="example.gif" width="400">
 
 ## Contribute
 
