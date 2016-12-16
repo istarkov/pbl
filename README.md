@@ -50,3 +50,17 @@ just add `--attached true`
 
 To pass ARGs to Docker build, just append them as an example `build-arg`.
 `pbl --name hello --build-arg PARAM=LALA`
+
+# SERVER CLEANUP
+
+Not done yiet, BTW
+
+Clear all intermediate images:
+
+`docker rmi $(docker images | grep "^<none>" | awk "{print $3}")`
+
+Clear all containers
+
+`docker rm -f $(docker ps -a -q)`
+
+Then run `pbls init`
