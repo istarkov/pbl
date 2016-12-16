@@ -55,12 +55,16 @@ To pass ARGs to Docker build, just append them as an example `build-arg`.
 
 Not done yiet, BTW
 
+Clear all containers
+
+`docker rm -f $(docker ps -a -q)`
+
 Clear all intermediate images:
 
 `docker rmi $(docker images | grep "^<none>" | awk "{print $3}")`
 
-Clear all containers
+Clear all pbl images
 
-`docker rm -f $(docker ps -a -q)`
+`docker rmi -f $(docker images --filter "label=pbl" -q)`
 
 Then run `pbls init`
