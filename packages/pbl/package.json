@@ -1,6 +1,6 @@
 {
   "name": "pbl",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "client version of pbl tool",
   "main": "index.js",
   "scripts": {
