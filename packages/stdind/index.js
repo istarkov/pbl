@@ -79,8 +79,11 @@ const rl = readline.createInterface({
 });
 
 const stdin$ = Observable.create((o) => {
+  let index = 0;
+
   rl.on('line', (chunk) => {
-    o.next(chunk);
+    index += 1;
+    o.next({ index, chunk });
   });
 
   rl.on('close', () => {
@@ -134,9 +137,9 @@ const $sockets = sockets$
 
 // combine last chunk with all sockets
 const $realtimeResponses = stdin$
-  .do((chunk) => {
-    if (chunk !== null) {
-      process.stdout.write(`${Base64.decode(chunk)}`);
+  .do((data) => {
+    if (data !== null) {
+      process.stdout.write(`${Base64.decode(data.chunk)}`);
     }
   })
   .withLatestFrom(

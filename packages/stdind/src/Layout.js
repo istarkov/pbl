@@ -94,9 +94,18 @@ export const layoutHOC = compose(
 
     const buffered$ = subject$
       .buffer(subject$.debounce(() => Observable.interval(DEBOUNCE_TIME)))
-      // .do(v => console.log('v', v.map(x => Base64.decode(x))))
       .delay(ref ? 0 : 100)
-      .do(v => v.map(x => ref.write(Base64.decode(x))))
+      .scan(
+        ({ maxIndex }, values) => ({
+          values: values.filter(v => v.index > maxIndex),
+          maxIndex: Math.max(
+            values.length > 0 ? values[values.length - 1].index : -1,
+            maxIndex
+          ),
+        }),
+        { maxIndex: -1 }
+      )
+      .do(({ values }) => values.map(x => ref.write(Base64.decode(x.chunk))))
       .startWith(undefined);
 
     return props$.combineLatest(buffered$, (props, buffered) => ({
