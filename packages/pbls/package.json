@@ -1,6 +1,6 @@
 {
   "name": "pbls",
-  "version": "0.1.21",
+  "version": "0.1.22",
   "description": "server version of pbl",
   "main": "index.js",
   "scripts": {
