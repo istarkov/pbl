@@ -7,7 +7,6 @@ full-featured view-only terminal with all the build process output will be avail
 
 If build process was finished successfully the app itself will be available at same URL, otherwise terminal with build process output will be available.
 
-
 ## Client install
 
 ### Prerequisites
@@ -24,7 +23,7 @@ pbl init --identity {SSH-IDENTITY-FILE-PATH} --server {YOUR-SERVER-HOST-OR-IP}
 PS: For node projects, there is no need to setup `pbl` globally,
 and it can be installed into devDependencies of a project.
 
-# Server install
+## Server install
 
 ### Prerequisites
 
@@ -36,3 +35,13 @@ Docker + Node LTS + build-essential (make) + python
 npm install -g pbls
 pbls init --domain {YOUR DOMAIN}
 ```
+
+# Usage Example
+
+Clone current project.
+
+Open `example` dir and run `pbl`, project will be published at {rnd}.{YOUR DOMAIN} host.
+Run `pbl --name hello` then project will be published at hello.{YOUR DOMAIN} host.
+
+To pass ARGs to build file run.
+`pbl --name hello --build-args PARAM=LALA`

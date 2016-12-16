@@ -10,7 +10,9 @@ const uuidV4 = require('uuid/v4');
 const args = minimist(process.argv.slice(2));
 
 if (args._[0] === 'init') {
-  const { domain } = args;
+  const { domain: prevDomain } = cfg.read();
+
+  const { domain = prevDomain } = args;
 
   const execOptions = {
     encoding: 'utf8',
@@ -35,14 +37,15 @@ if (args._[0] === 'init') {
     process.exit(1);
   }
 
-  const { domain: prevDomain } = cfg.read();
   cfg.update({ domain });
 
-  console.log(`
-    Domain changed:
-      new: ${chalk.bold(domain)}
-      old: ${chalk.red(prevDomain)}
-  `);
+  if (domain !== prevDomain) {
+    console.log(`
+      Domain changed:
+        new: ${chalk.bold(domain)}
+        old: ${chalk.red(prevDomain)}
+    `);
+  }
 
   process.exit(0);
 }
@@ -116,7 +119,7 @@ ${chalk.bold(`http://${name}.${domain}`)}
     );
 
   execSync(
-    `${__dirname}/scripts/run.sh -n ${name} -d ${domain} -f ${dockerFile} -- ${argsA.join(' ')}`,
+    `screen -dm /bin/bash -c '${__dirname}/scripts/run.sh -n ${name} -d ${domain} -f ${dockerFile} -- ${argsA.join(' ')}'`,
     execOptions
   );
 

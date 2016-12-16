@@ -31,7 +31,8 @@ if (args._[0] === 'help' || 'help' in args) {
 }
 
 if (args._[0] === 'init') {
-  const { identity, server } = args;
+  const { server: prevServer, identity: prevIdentity } = cfg.read();
+  const { server = prevServer, identity = prevIdentity } = args;
 
   if (!server) {
     console.log(`
@@ -44,7 +45,6 @@ if (args._[0] === 'init') {
     process.exit(1);
   }
 
-  const { server: prevServer, identity: prevIdentity } = cfg.read();
   cfg.update({ server, identity });
 
   if (prevServer !== server) {
@@ -82,11 +82,24 @@ if (!server) {
   process.exit(1);
 }
 
+const argsA = ['--name', '--dockerFile']
+  .reduce(
+    (r, v) => {
+      const idx = r.indexOf(v);
+
+      if (idx > -1) {
+        return [...r.slice(0, idx), ...r.slice(idx + 2)];
+      }
+
+      return r;
+    },
+    process.argv.slice(2)
+  );
+
 // split with -- run and ssh params
 const execParams = `${__dirname}/scripts/run.sh ` +
   `-n ${name} -f ${dockerFile} ` +
- `${identity ? `-i ${identity}` : ''} -s ${server}`;
-
+ `${identity ? `-i ${identity}` : ''} -s ${server} -- ${argsA.join(' ')}`;
 
 const execOptions = {
   encoding: 'utf8',
