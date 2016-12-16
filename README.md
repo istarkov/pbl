@@ -1,15 +1,11 @@
 # pbl
 
-`pbl` allows you to make fast and easy deployment of your Docker powered applications and services.
+`pbl` allows you to make fast and easy deployment of your Docker powered applications and services. Any directory that contains a Dockerfile can be deployed with one command: `pbl`.
 
-Any directory that contains a Dockerfile can be deployed with one command: `pbl`.
-
-Every time you deploy a project, pbl (by default) will provide you immediately with a new unique URL.
-
-Until BUILD process will be finished,
+Every time you deploy a project, `pbl` (by default) will provide you immediately with a new unique URL. Until build process will be finished,
 full-featured view-only terminal with all the build process output will be available at provided URL.
 
-And the app itself after build will be completed.
+If build process was finished successfully the app itself will be available at same URL, otherwise terminal with build process output will be available.
 
 
 ## Client install
