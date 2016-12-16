@@ -44,6 +44,8 @@ as an example `docker stats` command. (to make it work you need to run once `pbl
 ```bash
 npm install --global pty64
 pty64 --base64 -- docker stats | docker run -a STDIN -a STDOUT -i --rm -e VIRTUAL_HOST="stats.${YOUR_DOMAIN}" --name stats 'stdind' ./index.js --realtime
+# or in detached mode
+screen -S stats -dm /bin/bash -c 'pty64 --base64 -- docker stats | docker run -a STDIN -a STDOUT -i --rm -e VIRTUAL_HOST="stats.ui.revue.io" --name stats "stdind" ./index.js --realtime > /dev/null'
 ```
 
 # Clear:
