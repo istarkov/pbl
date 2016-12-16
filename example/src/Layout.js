@@ -15,7 +15,7 @@ const layoutComponent = ({
       <MatchWithProps
         exactly
         pattern="/"
-        component={() => <div>Hello Very Big World</div>}
+        component={() => <div>Hello A World</div>}
         state={state}
         dispatch={dispatch}
       />

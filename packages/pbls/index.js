@@ -22,11 +22,7 @@ if (args._[0] === 'init') {
     ]
   };
 
-  const code = execSync(`${__dirname}/scripts/install.sh`, execOptions);
-
-  if (code) {
-    process.exit(code);
-  }
+  execSync(`${__dirname}/scripts/install.sh`, execOptions);
 
   if (!domain) {
     console.log(`
@@ -45,7 +41,7 @@ if (args._[0] === 'init') {
   console.log(`
     Domain changed:
       new: ${chalk.bold(domain)}
-      old: ${chalk.bold(prevDomain)}
+      old: ${chalk.red(prevDomain)}
   `);
 
   process.exit(0);
@@ -119,9 +115,10 @@ ${chalk.bold(`http://${name}.${domain}`)}
       process.argv.slice(3)
     );
 
-  const code = execSync(
+  execSync(
     `${__dirname}/scripts/run.sh -n ${name} -d ${domain} -f ${dockerFile} -- ${argsA.join(' ')}`,
     execOptions
   );
-  process.exit(code);
+
+  process.exit(0);
 }

@@ -34,13 +34,18 @@ pbls run --name hello --dir ../../example --build-arg HELLO=WORLD
 pbls run --dir ../../example --build-arg HELLO=WORLD
 ```
 
+# Additional
+
+You can execute any process as a web-socket server with terminal,
+as an example `docker stats` command. (to make it work you need to run once `pbls init`)
+
+```bash
+npm install --global pty64
+pty64 --base64 -- docker stats | docker run -a STDIN -a STDOUT -i --rm -e VIRTUAL_HOST="stats.${YOUR_DOMAIN}" --name stats 'stdind' ./index.js --realtime
+```
+
 # Clear:
 
 ```bash
 docker rmi -f $(docker images --filter "label=pbl" -q)
 ```
-
-# Todo
-
-`npm bin`/pty64 --base64 -- docker stats | `npm bin`/stdind --realtime
-`npm bin`/pty64 --base64 -- docker stats | docker run -a STDIN -a STDOUT -i --rm -p 4000:4000 --name stdind 'stdind' ./index.js --realtime

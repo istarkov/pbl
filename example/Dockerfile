@@ -31,6 +31,8 @@ ADD . ./
 
 # Use pty64 to add pseudotty
 RUN `yarn bin`/pty64 -- yarn run lint
+
+# ARG VERSION=0 # example of args usage
 RUN `yarn bin`/pty64 -- yarn run build
 
 CMD /usr/local/bin/dumb-init -- node ./index.js

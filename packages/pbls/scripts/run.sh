@@ -117,6 +117,9 @@ then
   docker run -d -e VIRTUAL_HOST="${NAME}.${DOMAIN}" --name "$NAME" "$NAME:pbl"
 else
   echo 'ERROR AT BUILD'
-  cat "$LOG" | docker run -a STDIN -a STDOUT -i --rm -e VIRTUAL_HOST="${NAME}.${DOMAIN}" --name "$NAME" 'stdind' ./index.js --always > /dev/null &
+  echo "---------------------------------------"
+  echo -e "\033[1mhttp://${NAME}.${DOMAIN}\033[0m"
+  echo "---------------------------------------"
+  cat "$LOG" | nohup docker run -a STDIN -a STDOUT -i --rm -e VIRTUAL_HOST="${NAME}.${DOMAIN}" --name "$NAME" 'stdind' ./index.js --always > /dev/null &
   exit 0
 fi
