@@ -125,10 +125,19 @@ ${chalk.bold(`http://${name}.${domain}`)}
       execOptions
     );
   } else {
-    execSync(
-      `screen -S ${name} -L -dm /bin/bash -c '${__dirname}/scripts/run.sh -n ${name} -d ${domain} -f ${dockerFile} -- ${argsA.join(' ')}'`,
-      execOptions
-    );
+    try {
+      execSync(
+        `screen -S ${name} -L -dm /bin/bash -c '${__dirname}/scripts/run.sh -n ${name} -d ${domain} -f ${dockerFile} -- ${argsA.join(' ')}'`,
+        execOptions
+      );
+    } catch (e) {
+      console.error(chalk.red('EXEC SYNC ERROR OCCURED'), e);
+    }
   }
-  process.exit(0);
+
+  // looks like in very rare case screen has not started
+  setTimeout(
+    () => process.exit(0),
+    1000
+  );
 }
