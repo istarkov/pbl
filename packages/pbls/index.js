@@ -126,7 +126,7 @@ ${chalk.bold(`http://${name}.${domain}`)}
     );
   } else {
     execSync(
-      `screen -dm /bin/bash -c '${__dirname}/scripts/run.sh -n ${name} -d ${domain} -f ${dockerFile} -- ${argsA.join(' ')}'`,
+      `screen -S ${name} -dm /bin/bash -c '${__dirname}/scripts/run.sh -n ${name} -d ${domain} -f ${dockerFile} -- ${argsA.join(' ')}'`,
       execOptions
     );
   }
