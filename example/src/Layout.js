@@ -9,13 +9,13 @@ const layoutComponent = ({
 }) => (
   <div className={theme.component}>
     <div className={theme.header}>
-      Hello WORLD
+      Hello OLD WORLD
     </div>
     <div className={theme.content}>
       <MatchWithProps
         exactly
         pattern="/"
-        component={() => <div>Hello HELO World</div>}
+        component={() => <div>Hello My World</div>}
         state={state}
         dispatch={dispatch}
       />
