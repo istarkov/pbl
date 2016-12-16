@@ -32,7 +32,7 @@ ADD . ./
 # Use pty64 to add pseudotty
 RUN `yarn bin`/pty64 -- yarn run lint
 
-# ARG VERSION=0 # example of args usage
+# ARG HELLO # example of args usage just run "pbl --build-arg HELLO=WORLD"
 RUN `yarn bin`/pty64 -- yarn run build
 
 CMD /usr/local/bin/dumb-init -- node ./index.js

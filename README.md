@@ -43,5 +43,5 @@ Clone current project.
 Open `example` dir and run `pbl`, project will be published at {rnd}.{YOUR DOMAIN} host.
 Run `pbl --name hello` then project will be published at hello.{YOUR DOMAIN} host.
 
-To pass ARGs to build file run.
-`pbl --name hello --build-args PARAM=LALA`
+To pass ARGs to Docker build, just append them as an example `build-arg`.
+`pbl --name hello --build-arg PARAM=LALA`
