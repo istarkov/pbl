@@ -121,5 +121,9 @@ else
   echo -e "\033[1mhttp://${NAME}.${DOMAIN}\033[0m"
   echo "---------------------------------------"
   cat "$LOG" | docker run -a STDIN -a STDOUT -i --rm -e VIRTUAL_HOST="${NAME}.${DOMAIN}" --name "$NAME" 'stdind' ./index.js --always > /dev/null &
+  # sleep to be sure that LOG is in a docker,
+  # otherwise if we immediately close screen session, with some probability
+  # error will not be shown
+  sleep 30
   exit 0
 fi

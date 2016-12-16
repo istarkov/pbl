@@ -32,6 +32,8 @@ examples:
 pbls run --name hello --dir ../../example --build-arg HELLO=WORLD
 # or without name
 pbls run --dir ../../example --build-arg HELLO=WORLD
+# or in attached mode
+pbls run --attached true --dir ../../example --build-arg HELLO=WORLD
 ```
 
 # Additional

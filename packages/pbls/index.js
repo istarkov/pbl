@@ -55,6 +55,7 @@ if (args._[0] === 'run') {
     name = uuidV4().slice(0, 8),
     dockerFile = 'Dockerfile',
     dir,
+    attached,
   } = args;
 
   if (!dir) {
@@ -104,7 +105,7 @@ ${chalk.bold(`http://${name}.${domain}`)}
 -----------------------------------------------
   `);
 
-  const argsA = ['--name', '--dockerFile', '--dir']
+  const argsA = ['--name', '--dockerFile', '--dir', '--attached']
     .reduce(
       (r, v) => {
         const idx = r.indexOf(v);
@@ -118,10 +119,16 @@ ${chalk.bold(`http://${name}.${domain}`)}
       process.argv.slice(3)
     );
 
-  execSync(
-    `screen -dm /bin/bash -c '${__dirname}/scripts/run.sh -n ${name} -d ${domain} -f ${dockerFile} -- ${argsA.join(' ')}'`,
-    execOptions
-  );
-
+  if (attached) {
+    execSync(
+      `${__dirname}/scripts/run.sh -n ${name} -d ${domain} -f ${dockerFile} -- ${argsA.join(' ')}`,
+      execOptions
+    );
+  } else {
+    execSync(
+      `screen -dm /bin/bash -c '${__dirname}/scripts/run.sh -n ${name} -d ${domain} -f ${dockerFile} -- ${argsA.join(' ')}'`,
+      execOptions
+    );
+  }
   process.exit(0);
 }
