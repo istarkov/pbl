@@ -51,7 +51,11 @@ just add `--attached true`
 To pass ARGs to Docker build, just append them as an example `build-arg`.
 `pbl --name hello --build-arg PARAM=LALA`
 
-# SERVER CLEANUP
+# NOT DONE (yet)
+
+Add running server output log to some path like `http://{NAME}.{YOUR DOMAIN}/logs`
+
+## SERVER CLEANUP
 
 Not done yiet, BTW
 
