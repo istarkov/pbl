@@ -51,19 +51,18 @@ just add `--attached true`
 To pass ARGs to Docker build, just append them as an example `build-arg`.
 `pbl --name hello --build-arg PARAM=LALA`
 
-# NOT DONE (yet)
+## Server cleanup
 
-Add running server output log to some path like `http://{NAME}.{YOUR DOMAIN}/logs`
+As mostly all this containers does not needed after few days, just add command into `cron`
 
-## SERVER CLEANUP
-
-I suggest to just cleanup old containers, and use command like
-
-```
-docker ps -a --format "{{.ID}}#{{.CreatedAt}}#{{.Names}}" | awk -F  "#" '{if ($2 <= "2016-12-16 19:00:00 +0000 UTC" ) print $1}'
+```bash
+pbls clean --days {X}
 ```
 
-Not done yiet, BTW
+This command will stop all the containers before current date - {X} days,
+and also will clean all exited containers.
+
+# Full cleanup
 
 Clear all containers
 
@@ -84,3 +83,7 @@ Clear all pbl images
 Then run `pbls init`
 
 `docker ps -a --format "{{.ID}}:{{.CreatedAt}}:{{.Names}}"`
+
+# NOT DONE (yet)
+
+Add running server output log to some path like `http://{NAME}.{YOUR DOMAIN}/logs`

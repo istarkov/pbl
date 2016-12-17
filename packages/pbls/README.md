@@ -15,6 +15,12 @@ pbls init --domain {your domain}
 # example: pbls init --domain localhost
 ```
 
+to clean outdated containers run (as a recommendation in cron)
+
+```bash
+pbls clean --days {X}
+```
+
 # Work
 
 `pbls` is considered to work with `pbl` tool, for now it run command `run` but not intended do that

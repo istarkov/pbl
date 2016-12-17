@@ -50,6 +50,33 @@ if (args._[0] === 'init') {
   process.exit(0);
 }
 
+if (args._[0] === 'clean') {
+  const execOptions = {
+    encoding: 'utf8',
+    stdio: [
+      'inherit', // stdin (default)
+      'inherit', // stdout (default)
+      'inherit'  // stderr
+    ]
+  };
+
+  const DEFAULT_DAYS = 10;
+
+  if (!args.days) {
+    console.log(`
+      Days argument is not set, to set it use
+        ${chalk.bold('pbls clean --days 10')}
+        for now will be used default: ${chalk.bold(DEFAULT_DAYS)}
+    `);
+  }
+  const { days = DEFAULT_DAYS } = args;
+
+  execSync(
+    `${__dirname}/scripts/clean.sh -d ${days}`,
+    execOptions
+  );
+}
+
 if (args._[0] === 'run') {
   const {
     name = uuidV4().slice(0, 8),
