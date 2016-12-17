@@ -62,27 +62,11 @@ pbls clean --days {X}
 This command will stop all the containers before current date - {X} days,
 and also will clean all exited containers.
 
-# Full cleanup
+For full cleanup run:
 
-Clear all containers
-
-`docker rm -f $(docker ps -a -q)`
-
- or only exited
-
-`docker rm $(docker ps -a -q -f status=exited)`
-
-Clear all intermediate images:
-
-`docker rmi $(docker images | grep "^<none>" | awk "{print $3}")`
-
-Clear all pbl images
-
-`docker rmi -f $(docker images --filter "label=pbl" -q)`
-
-Then run `pbls init`
-
-`docker ps -a --format "{{.ID}}:{{.CreatedAt}}:{{.Names}}"`
+```bash
+pbls clean --days 0
+```
 
 # NOT DONE (yet)
 
