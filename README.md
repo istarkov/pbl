@@ -57,11 +57,21 @@ Add running server output log to some path like `http://{NAME}.{YOUR DOMAIN}/log
 
 ## SERVER CLEANUP
 
+I suggest to just cleanup old containers, and use command like
+
+```
+docker ps -a --format "{{.ID}}#{{.CreatedAt}}#{{.Names}}" | awk -F  "#" '{if ($2 <= "2016-12-16 19:00:00 +0000 UTC" ) print $1}'
+```
+
 Not done yiet, BTW
 
 Clear all containers
 
 `docker rm -f $(docker ps -a -q)`
+
+ or only exited
+
+`docker rm $(docker ps -a -q -f status=exited)`
 
 Clear all intermediate images:
 
@@ -72,3 +82,5 @@ Clear all pbl images
 `docker rmi -f $(docker images --filter "label=pbl" -q)`
 
 Then run `pbls init`
+
+`docker ps -a --format "{{.ID}}:{{.CreatedAt}}:{{.Names}}"`

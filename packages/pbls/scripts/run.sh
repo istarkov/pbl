@@ -115,7 +115,7 @@ then
   echo -e "\033[1mhttp://${NAME}.${DOMAIN}\033[0m"
   echo "---------------------------------------"
   echo ""
-  docker run -d -e VIRTUAL_HOST="${NAME}.${DOMAIN}" --name "$NAME" "$NAME:pbl"
+  docker run -d -e VIRTUAL_HOST="${NAME}.${DOMAIN}" --label pbl --name "$NAME" "$NAME:pbl"
 
   sleep 1
 
@@ -132,7 +132,7 @@ else
   echo "---------------------------------------"
   echo -e "\033[1mhttp://${NAME}.${DOMAIN}\033[0m"
   echo "---------------------------------------"
-  cat "$LOG" | docker run -a STDIN -a STDOUT -i --rm -e VIRTUAL_HOST="${NAME}.${DOMAIN}" --name "$NAME" 'stdind' ./index.js --always > /dev/null &
+  cat "$LOG" | docker run -a STDIN -a STDOUT -i --rm -e VIRTUAL_HOST="${NAME}.${DOMAIN}" --label pbl --name "$NAME" 'stdind' ./index.js --always > /dev/null &
   sleep 3
 
   for i in {0..10}; do
