@@ -47,7 +47,6 @@ const layoutComponent = ({
 
 export const layoutHOC = compose(
   themr('layout', layoutStyles),
-  // Mini redux + redux-observable
   mapPropsStream((props$) => {
     const DEBOUNCE_TIME = 10;
     const RECONNECT_TIMEOUT = 3000;

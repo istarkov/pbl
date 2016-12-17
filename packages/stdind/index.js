@@ -134,7 +134,7 @@ const $initialResponse = sockets$
   );
 
 // Combine all sockets
-const $sockets = sockets$
+const combinedSockets$ = sockets$
   .scan(
     (r, { type, socket }) => (
       type === 'ADD_SOCKET'
@@ -152,7 +152,7 @@ const $realtimeResponses = stdin$
     }
   })
   .withLatestFrom(
-    $sockets,
+    combinedSockets$,
     (chunk, sockets) => ({
       sockets,
       chunks: [chunk],
