@@ -91,14 +91,15 @@ if [ "$IS_NGINX_PROXY_STARTED" = "err" ]; then
 else
   if [ "$IS_NGINX_PROXY_STARTED" = "false" ]; then
     echo "nginx-proxy is not running. restarting..."
-    docker rm -f nginx-proxy
+    docker rm -f nginx-proxy || echo 'nginx-proxy already deleted'
+    sleep 1
     docker run -d -p 80:80 -v /var/run/docker.sock:/tmp/docker.sock:ro --name nginx-proxy jwilder/nginx-proxy
   else
-    echo 'nginx-proxy already runned'
+    echo 'nginx-proxy already started'
   fi
 fi
 
-docker rm -f "$NAME" || echo ''
+docker rm -f "$NAME" || echo "$NAME not started"
 
 "$BIN_FOLDER"/pty64 --base64 -- docker build -t "$NAME:pbl" -f "$DOCKERFILE" --label pbl "$@" . \
   | tee "$LOG" \
@@ -115,15 +116,37 @@ then
   echo "---------------------------------------"
   echo ""
   docker run -d -e VIRTUAL_HOST="${NAME}.${DOMAIN}" --name "$NAME" "$NAME:pbl"
+
+  sleep 1
+
+  for i in {0..10}; do
+    if [ "`docker inspect -f "{{.State.Running}}" $NAME`" != "true" ]; then
+      sleep 1
+    else
+      echo "Container $NAME started..."
+      break
+    fi
+  done
 else
   echo 'ERROR AT BUILD'
   echo "---------------------------------------"
   echo -e "\033[1mhttp://${NAME}.${DOMAIN}\033[0m"
   echo "---------------------------------------"
   cat "$LOG" | docker run -a STDIN -a STDOUT -i --rm -e VIRTUAL_HOST="${NAME}.${DOMAIN}" --name "$NAME" 'stdind' ./index.js --always > /dev/null &
+  sleep 3
+
+  for i in {0..10}; do
+    if [ "`docker inspect -f "{{.State.Running}}" $NAME`" != "true" ]; then
+      sleep 1
+    else
+      echo "Container $NAME for error output started..."
+      break
+    fi
+  done
+
   # sleep to be sure that LOG is in a docker,
   # otherwise if we immediately close screen session, with some probability
   # error will not be shown
-  sleep 30
+  sleep 3
   exit 0
 fi
