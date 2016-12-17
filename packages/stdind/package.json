@@ -1,10 +1,11 @@
 {
   "name": "stdind",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "A web-socket server, receives and sends base64 encoded terminal control sequences into socket",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --inline --config './config/webpack.config.dev.babel.js'",
+    "start:server": "`npm bin`/pty64 --base64 -- ./examples/longRunning.js | ./index.js --always",
     "clean": "rimraf build",
     "build": "NODE_ENV=production webpack --config './config/webpack.config.production.babel.js' --progress",
     "lint": "eslint src",
