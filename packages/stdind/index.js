@@ -36,6 +36,7 @@ cat out.txt | node ./index.js --always
 **/
 const readline = require('readline');
 const express = require('express');
+const compression = require('compression');
 const path = require('path');
 const { Server } = require('http');
 const { Base64 } = require('js-base64');
@@ -68,6 +69,8 @@ if (buildIndex > -1) {
 const app = express();
 const server = Server(app);
 const wss = new WebSocketServer({ server, path: process.env.WS_PATH || WS_PATH });
+app.use(compression());
+
 const dataFileIndex = process.argv.indexOf('--file') + 1;
 const preventExit = process.argv.indexOf('--always') > -1;
 const isRealtime = process.argv.indexOf('--realtime') > -1;

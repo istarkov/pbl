@@ -1,4 +1,5 @@
 const express = require('express');
+const compression = require('compression');
 const path = require('path');
 const { Server } = require('http');
 
@@ -6,6 +7,8 @@ const WS_PORT = 4000;
 
 const app = express();
 const server = Server(app);
+
+app.use(compression());
 app.use(express.static(path.join(__dirname, './build')));
 
 app.get('/*', (req, res) => {
