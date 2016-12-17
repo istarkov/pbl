@@ -67,6 +67,6 @@ shift $((OPTIND-1))
 SERVER_DIR=/tmp/"$NAME"
 
 # TODO add filtering using .dockerignore
-rsync -e "$SSH_RSYNC" -avz --progress --delete --exclude='.git' --exclude='node_modules' ./ "$SERVER":"$SERVER_DIR"
+rsync -e "$SSH_RSYNC" -avz --delete --exclude='.git' --exclude='node_modules' ./ "$SERVER":"$SERVER_DIR"
 
 $SSH_RSYNC -t $SERVER "source ~/.profile;pbls run --name $NAME --dockerFile $DOCKERFILE --dir $SERVER_DIR $*"
