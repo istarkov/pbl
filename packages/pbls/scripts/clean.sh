@@ -51,9 +51,13 @@ done
 
 CLEANUP_DATE=$(date -u --date="$DAYS days ago" +"%Y-%m-%d %T %z UTC")
 
+echo "Clear intermediate images"
+
+docker rmi $(docker images --filter "dangling=true" -q --no-trunc) 2>/dev/null || echo -e "\n No images to clear"
+
 echo 'Clearing exited containers'
 
-docker rm $(docker ps -a -q -f status=exited) || echo -e "\nNothing to delete"
+docker rm $(docker ps -qa --no-trunc --filter "status=exited") 2>/dev/null || echo -e "\nNo conatiners to clear"
 
 echo 'Following containers will be deleted.'
 
@@ -61,4 +65,4 @@ docker ps -a --filter "label=pbl" --format "{{.ID}}#{{.CreatedAt}}#{{.Names}}" |
 
 echo 'Start deleting...'
 
-docker rm -f $(docker ps -a --filter "label=pbl" --format "{{.ID}}#{{.CreatedAt}}#{{.Names}}" | awk -v cd="$CLEANUP_DATE" -F  "#" '{if ($2 <= cd ) print $1}') || echo -e "\nNothing to delete"
+docker rm -f $(docker ps -a --no-trunc --filter "label=pbl" --format "{{.ID}}#{{.CreatedAt}}#{{.Names}}" | awk -v cd="$CLEANUP_DATE" -F  "#" '{if ($2 <= cd ) print $1}') || echo -e "\nNothing to delete"
