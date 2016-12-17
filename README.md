@@ -5,7 +5,7 @@
 Every time you deploy a project, `pbl` (by default) will provide you immediately with a new unique URL. Until build process will be finished,
 full-featured view-only terminal with all the build process output will be available at provided URL.
 
-If build process was finished successfully the app itself will be available at same URL, otherwise terminal with build process output will be available.
+If build process was finished successfully the app itself will be available at same URL, otherwise terminal with build process output and error will be available.
 
 ## Client install
 
@@ -27,7 +27,9 @@ and it can be installed into devDependencies of a project.
 
 ### Prerequisites
 
-Docker + Node LTS + build-essential (make) + python
+Docker + Node LTS + build-essential (make) + python,
+you need to own domain name (or just use `/etc/hosts`),
+and have a DNS record for third (in some cases fourth) level pointing to your server.
 
 ### Install
 
