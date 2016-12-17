@@ -48,9 +48,9 @@ pbls init --domain {YOUR DOMAIN}
 
 Clone current project.
 
-Open `example` dir and run `pbl`, project will be published at {rnd}.{YOUR DOMAIN} host.
+Open `example` dir and run `pbl`, project will be published at `{rnd}.{YOUR DOMAIN}` host.
 
-Run `pbl --name hello` then project will be published at hello.{YOUR DOMAIN} host.
+Run `pbl --name hello` then project will be published at `hello.{YOUR DOMAIN}` host.
 
 By default `pbl` runs deploy in detached mode, and exits almost immediately after run,
 but sometimes if you need more control you can run `pbl` in `attached` mode,
@@ -67,7 +67,7 @@ As mostly all this containers does not needed after few days, just add command i
 pbls clean --days {X}
 ```
 
-This command will stop all the containers before current date - {X} days,
+This command will stop all the containers before `current date` - `{X}` days,
 and also will clean all exited containers.
 
 For full cleanup run:
