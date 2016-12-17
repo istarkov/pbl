@@ -14,7 +14,7 @@ const layoutComponent = ({
 }) => (
   <div className={theme.component}>
     <div className={theme.header}>
-      BUILD
+      <a className={theme.link} href={'https://github.com/istarkov/pbl'}>PBL PROJECT</a>
     </div>
     <div className={theme.content}>
       {/*
@@ -39,7 +39,7 @@ const layoutComponent = ({
       />
     </div>
     <div className={theme.footer}>
-      created by AShain and IStarkov
+      <a className={theme.link} href={'https://github.com/istarkov/pbl'}>A simple deploy tool</a>
     </div>
   </div>
 );
