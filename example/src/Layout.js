@@ -1,11 +1,12 @@
 import React from 'react';
 import { themr } from 'react-css-themr';
 import compose from 'recompose/compose';
-import layoutStyles from './layout.sass';
 import MatchWithProps from './enhancers/MatchWithProps';
+import Content from './Content';
+import layoutStyles from './layout.sass';
 
 const layoutComponent = ({
-  theme, state, dispatch
+  theme, state, dispatch,
 }) => (
   <div className={theme.component}>
     <div className={theme.header}>
@@ -15,25 +16,27 @@ const layoutComponent = ({
       <MatchWithProps
         exactly
         pattern="/"
-        component={() => <div>lalla world</div>}
+        component={Content}
         state={state}
         dispatch={dispatch}
       />
+      {/*
       <MatchWithProps
         pattern="/:id"
         component={() => <div>Lallla</div>}
         state={state}
         dispatch={dispatch}
       />
+      */}
     </div>
     <div className={theme.footer}>
-      CecTPa yTky mHe
+      <span className={theme.team}>team</span> &nbsp;CecTPa yTky mHe
     </div>
   </div>
 );
 
 export const layoutHOC = compose(
-  the mr('layout', layoutStyles),
+  themr('layout', layoutStyles),
 );
 
 export default layoutHOC(layoutComponent);
