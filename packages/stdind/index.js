@@ -101,6 +101,15 @@ const sockets$ = Observable.create((o) => {
       o.next({ socket, type: 'REMOVE_SOCKET' });
     });
 
+    // to avoid gateway timeout
+    socket.on('message', () => {
+      socket.send(
+        JSON.stringify({ index: -2, chunk: 'pong' }),
+        { fin: false },
+        () => {}
+      );
+    });
+
     o.next({ socket, type: 'ADD_SOCKET' });
   });
 })

@@ -50,5 +50,10 @@ Clone project, to see example run
 ```
 npm install
 npm run build
-`npm bin`/pty64 --base64 -- ./examples/longRunning.js | ./index.js
+npm run start:server
 ```
+
+open localhost:4000 to see it in action,
+
+To develop client part, run `npm run start`,
+open localhost:3000 to see it in action

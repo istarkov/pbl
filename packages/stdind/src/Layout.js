@@ -36,6 +36,7 @@ const layoutComponent = ({
         {...defaultConfig}
         ref_={setRef}
         onResize={() => {}}
+        onActive={() => {}}
       />
     </div>
     <div className={theme.footer}>
@@ -51,6 +52,7 @@ export const layoutHOC = compose(
     const DEBOUNCE_TIME = 10;
     const RECONNECT_TIMEOUT = 3000;
     const RECONNECT_ATTEMPTS = 50;
+    const PING_INTERVAL = 30000;
 
     let ref;
 
@@ -59,6 +61,8 @@ export const layoutHOC = compose(
     };
 
     const { hostname, port } = window.location;
+
+    const socket$ = Observable.webSocket(`ws://${hostname}:${port}/ws`);
 
     const subject$ =
       Observable.concat(...[
@@ -75,8 +79,7 @@ export const layoutHOC = compose(
             ]
             : []
         ),
-        Observable
-        .webSocket(`ws://${hostname}:${port}/ws`)
+        socket$
         .retryWhen(error =>
           Observable
             .from(error)
@@ -91,6 +94,13 @@ export const layoutHOC = compose(
         ),
       ])
       .share();
+
+    // to avoid socket gateway timeouts
+    Observable
+      .interval(PING_INTERVAL)
+      .subscribe(() => {
+        socket$.next('ping');
+      });
 
     const buffered$ = subject$
       .buffer(subject$.debounce(() => Observable.interval(DEBOUNCE_TIME)))

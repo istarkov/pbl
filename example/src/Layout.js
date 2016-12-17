@@ -15,7 +15,7 @@ const layoutComponent = ({
       <MatchWithProps
         exactly
         pattern="/"
-        component={() => <div>Hello world</div>}
+        component={() => <div>lalla world</div>}
         state={state}
         dispatch={dispatch}
       />
@@ -33,7 +33,7 @@ const layoutComponent = ({
 );
 
 export const layoutHOC = compose(
-  themr('layout', layoutStyles),
+  the mr('layout', layoutStyles),
 );
 
 export default layoutHOC(layoutComponent);
