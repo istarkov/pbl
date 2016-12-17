@@ -18,9 +18,10 @@ To make it work you need to have nodejs installed on the client machine.
 
 ### Install
 
-```
+```bash
 npm install -g pbl
-pbl init --identity {SSH-IDENTITY-FILE-PATH} --server {YOUR-SERVER-HOST-OR-IP}
+pbl init --identity {SSH-IDENTITY-FILE-PATH} --server {USER@YOUR-SERVER-HOST-OR-IP}
+# example: pbl init --identity ~/.ssh/mykey.pem --server ubuntu@ui.revue.io
 ```
 
 PS: For node projects, there is no need to setup `pbl` globally,
@@ -36,9 +37,11 @@ and have a DNS record for third (in some cases fourth) level pointing to your se
 
 ### Install
 
-```
+```bash
 npm install -g pbls
 pbls init --domain {YOUR DOMAIN}
+# example: pbls init --domain ui.revue.io
+# as I want to publish all content under fourth level domain
 ```
 
 # Usage Example
