@@ -52,6 +52,8 @@ Open `example` dir and run `pbl`, project will be published at `{rnd}.{YOUR DOMA
 
 Run `pbl --name hello` then project will be published at `hello.{YOUR DOMAIN}` host.
 
+To use dockerfile with other name than `Dockerfile` just run as `pbl --dockerFile ./DockerfileOther`
+
 By default `pbl` runs deploy in detached mode, and exits almost immediately after run,
 but sometimes if you need more control you can run `pbl` in `attached` mode,
 just add `--attached true`
@@ -79,3 +81,13 @@ pbls clean --days 0
 # NOT DONE (yet)
 
 Add running server output log to some path like `http://{NAME}.{YOUR DOMAIN}/logs`
+
+# Contribute
+
+To use locally:
+
+* add `127.0.0.1       *.localhost` to `/etc/hosts`,
+
+* initialize pbls as `./packages/pbls/index.js init --domain localhost`
+
+* then `example` or any Dockerfile folder run local pbl in dev mode like `../packages/pbl/index.js --mode dev`

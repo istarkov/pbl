@@ -39,8 +39,9 @@ NAME=
 DOCKERFILE="Dockerfile"
 IDENTITY=
 SERVER=
+MODE=
 
-while getopts "h?i:n:f:s:" opt; do
+while getopts "h?i:n:f:s:m:?" opt; do
     case "$opt" in
     h|\?)
         show_help
@@ -54,6 +55,8 @@ while getopts "h?i:n:f:s:" opt; do
         ;;
     s)  SERVER=$OPTARG
         ;;
+    m)  MODE=$OPTARG
+        ;;
     esac
 done
 
@@ -61,23 +64,27 @@ shift $((OPTIND-1))
 
 [ "$1" = "--" ] && shift
 
-# echo $NAME $DOMAIN $DOCKERFILE --- "$@"
-[[ -z $IDENTITY ]] && SSH_RSYNC="ssh" || SSH_RSYNC="ssh -i $IDENTITY"
+if [ "$MODE" == 'dev' ]; then
+  echo 'Development mode, pbls will be run locally and from packages folder'
+  "$(dirname "$0")/../../pbls/index.js" run --name "$NAME" --dockerFile "$DOCKERFILE" --dir "$PWD" --attached true "$@"
+else
+  [[ -z $IDENTITY ]] && SSH_RSYNC="ssh" || SSH_RSYNC="ssh -i $IDENTITY"
 
-SERVER_DIR=/tmp/"$NAME"
+  SERVER_DIR=/tmp/"$NAME"
 
-# TODO add filtering using .dockerignore
-rsync -e "$SSH_RSYNC" -avz --delete --exclude='.git' --exclude='node_modules' ./ "$SERVER":"$SERVER_DIR" | {
-  # beautify rsync output
-  echo -n '['
-  while IFS= read -r line
-  do
-    echo -n "="
-    lastline="$line"
-  done
-  echo -n ']'
-  # This won't work without the braces.
-  echo -e "\n$lastline"
-}
+  # TODO add filtering using .dockerignore
+  rsync -e "$SSH_RSYNC" -avz --delete --exclude='.git' --exclude='node_modules' ./ "$SERVER":"$SERVER_DIR" | {
+    # beautify rsync output
+    echo -n '['
+    while IFS= read -r line
+    do
+      echo -n "="
+      lastline="$line"
+    done
+    echo -n ']'
+    # This won't work without the braces.
+    echo -e "\n$lastline"
+  }
 
-$SSH_RSYNC -t $SERVER "source ~/.profile;pbls run --name $NAME --dockerFile $DOCKERFILE --dir $SERVER_DIR $*"
+  $SSH_RSYNC -t $SERVER "source ~/.profile;pbls run --name $NAME --dockerFile $DOCKERFILE --dir $SERVER_DIR $*"
+fi

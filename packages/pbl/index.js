@@ -69,7 +69,7 @@ if (args._[0] === 'init') {
 const {
   name = uuidV4().slice(0, 8),
   dockerFile = 'Dockerfile',
-  // domain = '',
+  mode, // mode if eq to dev will run pbls locally
 } = args;
 
 const { server, identity } = cfg.read();
@@ -82,7 +82,7 @@ if (!server) {
   process.exit(1);
 }
 
-const argsA = ['--name', '--dockerFile']
+const argsA = ['--name', '--dockerFile', '--mode']
   .reduce(
     (r, v) => {
       const idx = r.indexOf(v);
@@ -96,10 +96,11 @@ const argsA = ['--name', '--dockerFile']
     process.argv.slice(2)
   );
 
-// split with -- run and ssh params
 const execParams = `${__dirname}/scripts/run.sh ` +
   `-n ${name} -f ${dockerFile} ` +
- `${identity ? `-i ${identity}` : ''} -s ${server} -- ${argsA.join(' ')}`;
+ `${identity ? `-i ${identity}` : ''} ` +
+ `${mode ? `-m ${mode}` : ''} ` +
+ `-s ${server} -- ${argsA.join(' ')}`;
 
 const execOptions = {
   encoding: 'utf8',
