@@ -73,7 +73,7 @@ else
   SERVER_DIR=/tmp/"$NAME"
 
   # TODO add filtering using .dockerignore
-  rsync -e "$SSH_RSYNC" -avz --delete --exclude='.git' --exclude='node_modules' ./ "$SERVER":"$SERVER_DIR" | {
+  rsync -e "$SSH_RSYNC" -avz --delete --exclude='.git' --exclude='/node_modules' ./ "$SERVER":"$SERVER_DIR" | {
     # beautify rsync output
     echo -n '['
     while IFS= read -r line
