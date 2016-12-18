@@ -17,14 +17,15 @@ RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \
    /usr/sbin/update-locale LANG=en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
 
-RUN npm install --loglevel error --global yarn
-
 EXPOSE 4000
 
 WORKDIR /app
 
 ADD package.json ./
 ADD yarn.lock ./
+
+RUN npm install --loglevel error --global yarn
+
 RUN yarn
 
 ADD . ./

@@ -2,6 +2,7 @@ import React from 'react';
 import compose from 'recompose/compose';
 import { themr } from 'react-css-themr';
 import markdown from 'markdown-in-js';
+import Carusel from './Carusel';
 import contentStyles from './content.sass';
 
 const Data = () => markdown`
@@ -26,6 +27,7 @@ otherwise terminal with build process output and error will be available.
 export const content = ({ theme }) => (
   <div className={theme.main}>
     <Data />
+    <Carusel />
   </div>
 );
 

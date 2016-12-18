@@ -154,6 +154,10 @@ export default {
         test: /\.svg$/,
         loaders: ['url-loader?limit=7000'],
       },
+      {
+        test: /\.png$/,
+        loaders: ['url-loader?limit=7000'],
+      },
     ],
   },
 };

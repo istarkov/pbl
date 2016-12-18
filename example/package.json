@@ -70,8 +70,10 @@
     "react-dom": "^15.4.1",
     "react-hot-loader": "3.0.0-beta.6",
     "react-router": "4.0.0-alpha.6",
+    "react-slick": "^0.14.5",
     "recompose": "^0.20.2",
     "rxjs": "^5.0.0-beta.11",
+    "slick-carousel": "^1.6.0",
     "webfontloader": "^1.6.26",
     "ws": "^1.1.1"
   }

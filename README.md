@@ -35,6 +35,9 @@ Docker + Node LTS + build-essential (make) + python,
 you need to own domain name (or just use `/etc/hosts`),
 and have a DNS record for third (in some cases fourth) level pointing to your server.
 
+I highly recommend you to use overlay2 for docker storage driver, because of this issue
+https://github.com/docker/docker/issues/10613
+
 ### Install
 
 ```bash
@@ -91,3 +94,11 @@ To use locally:
 * initialize pbls as `./packages/pbls/index.js init --domain localhost`
 
 * then `example` or any Dockerfile folder run local pbl in dev mode like `../packages/pbl/index.js --mode dev`
+
+# TODO
+
+Issue https://github.com/docker/docker/issues/10613
+
+Change storage driver to overlay2, https://docs.docker.com/engine/userguide/storagedriver/selectadriver/#overlay-vs-overlay2
+For now all inodes have gone on my current config with overlay
+See `df -i`

@@ -117,6 +117,7 @@ export default {
         ],
         exclude: [
           path.join(paths.appNodeModules, 'react-virtualized'),
+          path.join(paths.appNodeModules, 'slick-carousel'),
         ],
       },
       {
@@ -128,10 +129,15 @@ export default {
         ],
         include: [
           path.join(paths.appNodeModules, 'react-virtualized'),
+          path.join(paths.appNodeModules, 'slick-carousel'),
         ],
       },
       {
         test: /\.svg$/,
+        loaders: ['url-loader?limit=7000'],
+      },
+      {
+        test: /\.png$/,
         loaders: ['url-loader?limit=7000'],
       },
     ],

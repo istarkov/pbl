@@ -1,0 +1,64 @@
+@mixin aspect-ratio($element, $width, $height)
+  position: relative
+
+  &:before
+    display: block
+    width: 100%
+    padding-top: ($height / $width) * 100%
+    content: ''
+
+  @if ($element)
+    > #{$element}
+      position: absolute
+      top: 0
+      left: 0
+      width: 100%
+      height: 100%
+
+
+.main
+  display: flex
+  flex: 1
+  justify-content: space-around
+  align-items: center
+  min-width: 0
+  *
+    min-width: 0
+
+
+.holder
+  flex: 1
+  // margin: 0 -50px
+
+.card
+  @include aspect-ratio('.aspectRatioContent', 4, 3)
+
+  &:global(.slick-center)
+    z-index: 100
+    .innerCard
+      // transform: scale(1.05, 1.05)
+      border: 1px solid #fff
+
+.aspectRatioContent
+  display: flex
+  // border: 1px solid rgba(0,0,0,0)
+
+.innerCard
+  background-size: cover
+  margin: 3px
+  border: 1px solid rgba(0,0,0,0)
+  display: flex
+  flex: 1
+  background-color: #272822
+
+.description
+  flex: 1
+  min-height: 32px
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.8)
+  font-size: 14px
+  margin-top: auto
+  margin-bottom: 5px
+  margin-left: 5px
+  margin-right: 5px
+  padding: 5px
+  background-color: rgba(0,0,0,0.7)
