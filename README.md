@@ -47,7 +47,7 @@ pbls init --domain {YOUR DOMAIN}
 # as I want to publish all content under fourth level domain
 ```
 
-# Usage Example
+## Usage Example
 
 Clone current project.
 
@@ -81,11 +81,7 @@ For full cleanup run:
 pbls clean --days 0
 ```
 
-# NOT DONE (yet)
-
-Add running server output log to some path like `http://{NAME}.{YOUR DOMAIN}/logs`
-
-# Contribute
+## Contribute
 
 To use locally:
 
@@ -95,7 +91,9 @@ To use locally:
 
 * then `example` or any Dockerfile folder run local pbl in dev mode like `../packages/pbl/index.js --mode dev`
 
-# TODO
+## TODO
+
+Add running server output log to some path like `http://{NAME}.{YOUR DOMAIN}/logs`
 
 Issue https://github.com/docker/docker/issues/10613
 
