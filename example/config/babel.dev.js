@@ -8,6 +8,7 @@ export default {
   ].map(require.resolve),
 
   plugins: [
+    'markdown-in-js/babel',
     'react-hot-loader/babel',
     // 'babel-plugin-transform-decorators-legacy',
   ].map(require.resolve)

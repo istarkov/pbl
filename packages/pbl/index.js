@@ -4,10 +4,10 @@
 
 const chalk = require('chalk');
 const minimist = require('minimist');
-const cfg = require('./lib/cfg');
+const fs = require('fs');
 const { execSync } = require('child_process');
 const uuidV4 = require('uuid/v4');
-
+const cfg = require('./lib/cfg');
 
 const args = minimist(process.argv.slice(2));
 
@@ -23,6 +23,9 @@ const showHelp = (txt) => {
       run:
         pbl
         pbl --name hello
+        pbl --name hello --attached true ${chalk.grey('# see docs about attached mode')}
+        pbl --name hello --dockerFile someName ${chalk.grey('# if you want to use other name than Dockerfile ')}
+        pbl --mode dev ${chalk.grey('# run in dev mode (locally) ')}
   `);
 };
 
@@ -78,6 +81,14 @@ if (!server) {
   showHelp(`
     ${chalk.red('server is not specified')}
     please run ${chalk.red('pbl init --server {USER@SERVER OR IP}')}
+  `);
+  process.exit(1);
+}
+
+if (!fs.existsSync(dockerFile)) {
+  showHelp(`
+    ${chalk.red('Dockerfile is not exists at')} ${chalk.bold(process.cwd())}
+    ${chalk.red('pbl can only deploy Dockerfile projects')}
   `);
   process.exit(1);
 }

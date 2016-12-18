@@ -8,6 +8,7 @@ export default {
   ].map(require.resolve),
 
   plugins: [
+    'markdown-in-js/babel',
   ].map(require.resolve)
   .concat([[
     require.resolve('babel-plugin-transform-runtime'),
