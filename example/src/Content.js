@@ -25,7 +25,9 @@ otherwise terminal with build process output and error will be available.
 export const content = ({ theme }) => (
   <div className={theme.main}>
     <div className={theme.avatar} />
-    <Data />
+    <div className={theme.data}>
+      <Data />
+    </div>
     <Carusel />
   </div>
 );
