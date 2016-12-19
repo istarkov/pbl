@@ -16,7 +16,7 @@ setObservableConfig({
 
 webfontloader.load({
   google: {
-    families: ['Roboto Mono'],
+    families: ['Roboto'],
   },
 });
 
