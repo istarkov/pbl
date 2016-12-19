@@ -6,8 +6,6 @@ import Carusel from './Carusel';
 import contentStyles from './content.sass';
 
 const Data = () => markdown`
-# PBL
-
 **pbl** allows you to make fast and easy deployment of your
 Docker powered applications and services.
 Any directory that contains a Dockerfile can be deployed with one command \`pbl\`

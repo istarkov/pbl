@@ -2,17 +2,24 @@ import React from 'react';
 import { themr } from 'react-css-themr';
 import compose from 'recompose/compose';
 import MatchWithProps from './enhancers/MatchWithProps';
+import Container from './Container';
+import Tmp from './Tmp';
+import InnerScroll from './InnerScroll';
 import Content from './Content';
 import layoutStyles from './layout.sass';
+
 
 const layoutComponent = ({
   theme, state, dispatch,
 }) => (
   <div className={theme.component}>
     <div className={theme.header}>
-      Example project
+      <Container theme={theme} themeNamespace={'header'}>
+        <h1 className={theme.headerText}>PBL</h1>
+        <span>easy deployment tool</span>
+      </Container>
     </div>
-    <div className={theme.content}>
+    <Container>
       <MatchWithProps
         exactly
         pattern="/"
@@ -20,17 +27,25 @@ const layoutComponent = ({
         state={state}
         dispatch={dispatch}
       />
-      {/*
+
       <MatchWithProps
-        pattern="/:id"
-        component={() => <div>Lallla</div>}
+        pattern="/scroll"
+        component={Tmp}
         state={state}
         dispatch={dispatch}
       />
-      */}
-    </div>
+
+      <MatchWithProps
+        pattern="/inner"
+        component={InnerScroll}
+        state={state}
+        dispatch={dispatch}
+      />
+    </Container>
     <div className={theme.footer}>
-      <span className={theme.team}>team</span> &nbsp;CecTPa yTky mHe
+      <Container theme={theme} themeNamespace={'footer'}>
+        <span className={theme.team}>team</span> &nbsp;CecTPa yTky mHe
+      </Container>
     </div>
   </div>
 );
