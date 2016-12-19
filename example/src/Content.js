@@ -7,7 +7,7 @@ import contentStyles from './content.sass';
 
 const Data = () => markdown`
 **Pbl** allows you to make fast and easy deployment of your
-Docker powered applications and services.
+Docker powered applications and services on your server.
 Any directory that contains a Dockerfile can be deployed with one command \`pbl\`
 
 Every time you deploy a project, **pbl** (by default) will provide you
