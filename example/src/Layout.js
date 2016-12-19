@@ -44,7 +44,7 @@ const layoutComponent = ({
     </Container>
     <div className={theme.footer}>
       <Container theme={theme} themeNamespace={'footer'}>
-        <span className={theme.team}>team</span> &nbsp;CecTPa yTky mHe
+        <span className={theme.team}>team</span> &nbsp;CecTPa yTky MHe
       </Container>
     </div>
   </div>
