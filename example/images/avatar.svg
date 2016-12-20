@@ -18,7 +18,7 @@
         </mask>
     </defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <path d="M0,40 C0,40 49.0887632,29.1557617 74,29.1557617 C98.9112368,29.1557617 151,39 151,39 L151,102 L0,102 L0,40 Z" id="Rectangle" fill="#272822"></path>
+        <path d="M0,37.7651859 C0,37.7651859 49.0887632,37 74,37 C98.9112368,37 151,37.6946244 151,37.6946244 L151,42.1399999 L0,42.1399999 L0,37.7651859 Z" id="Rectangle" fill="#272822"></path>
         <use id="Rectangle-4" stroke="#999" mask="url(#mask-2)" stroke-width="2" fill="#272822" transform="translate(35.922886, 43.845602) scale(1, -1) rotate(25.000000) translate(-35.922886, -43.845602) " xlink:href="#path-1"></use>
         <use id="Rectangle-4" stroke="#999" mask="url(#mask-4)" stroke-width="2" fill="#272822" transform="translate(115.578486, 43.144904) scale(-1, -1) rotate(25.000000) translate(-115.578486, -43.144904) " xlink:href="#path-3"></use>
         <rect id="Rectangle-3" fill="#999" x="59" y="61" width="13" height="1"></rect>
