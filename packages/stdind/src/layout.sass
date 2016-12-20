@@ -1,35 +1,71 @@
+*
+  min-width: 0
+  min-height: 0
+
 .component
   flex: 1
   display: flex
   flex-direction: column
+  position: relative
+
+.term
+  flex: 1
+  display: flex
+  flex-direction: column
+  margin: 0 0 0 0
+
+.avatarLine
+  height: 0
+  position: relative
+  pointer-events: none
+
+.avatarHolder
+  position: absolute
+  left: 0
+  right: 0
+  display: flex
+  top: -41px
+  z-index: 1
+
+.avatar
+  background-image: url('../images/avatar.svg')
+  background-size: contain
+  background-repeat: no-repeat
+  height: 66px
+  width: 150px
+  margin: 0 auto
 
 .header
-  height: 3rem
-  flex-shrink: 0
-  background-color: #47494D
-  color: #20BEFF
+  border-bottom: 1px solid #666
+  background-color: rgba(0, 0, 0, 0.05)
   display: flex
-  justify-content: flex-start
   align-items: center
-  padding: 0 2rem
+  color: #999
 
-.content
-  margin: 1rem 2rem
-  flex: 1
-  position: relative
-  display: flex
+  H1
+    color: #20BEFF
+  SPAN
+    font-size: 10px
+    margin-left: 4px
+
+  .headerContent
+    align-items: baseline
+
+.headerText
+  margin: 10px 0
 
 .footer
   font-size: 0.8rem
-  flex-shrink: 0
   height: 2rem
-  background-color: #47494D
-  color: #20BEFF
+  border-top: 1px solid rgba(255, 255, 255, 0.10)
+  background-color: rgba(0, 0, 0, 0.05)
   display: flex
-  justify-content: flex-end
   align-items: center
-  padding: 0 2rem
 
-.link
-  color: #20BEFF
-  text-decoration: none
+  .footerContent
+    justify-content: flex-end
+    align-items: baseline
+
+.team
+  color: #999
+  font-size: 10px

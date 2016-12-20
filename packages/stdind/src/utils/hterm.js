@@ -160,6 +160,9 @@ hterm.Terminal.IO.prototype.writeUTF8 = function (string) {
 const oldCreateContainer = hterm.TextAttributes.prototype.createContainer;
 hterm.TextAttributes.prototype.createContainer = function (text) {
   const container = oldCreateContainer.call(this, text);
+  if (container && container.style) {
+    container.style['-webkit-font-smoothing'] = 'antialiased';
+  }
 
   if (container.style && text.length === 1 && containsNonLatinCodepoints(text)) {
     container.style.width = `${container.wcNode ? charWidth * 2 : charWidth}px`;

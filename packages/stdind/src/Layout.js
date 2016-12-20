@@ -5,7 +5,7 @@ import { Base64 } from 'js-base64';
 import { Observable } from 'rxjs';
 import mapPropsStream from 'recompose/mapPropsStream';
 import layoutStyles from './layout.sass';
-// import MatchWithProps from './enhancers/MatchWithProps';
+import Container from './Container';
 import Term from './Term';
 import defaultConfig from './utils/defaultConfig';
 
@@ -14,33 +14,30 @@ const layoutComponent = ({
 }) => (
   <div className={theme.component}>
     <div className={theme.header}>
-      <a className={theme.link} href={'https://github.com/istarkov/pbl'}>PBL PROJECT</a>
+      <Container theme={theme} themeNamespace={'header'}>
+        <h1 className={theme.headerText}>PBL</h1>
+        <span>easy deployment tool</span>
+      </Container>
     </div>
-    <div className={theme.content}>
-      {/*
-      <MatchWithProps
-        exactly
-        pattern="/"
-        component={() => <div>Hello A Big World</div>}
-        state={state}
-        dispatch={dispatch}
-      />
-      <MatchWithProps
-        pattern="/:id"
-        component={() => <div>Lala</div>}
-        state={state}
-        dispatch={dispatch}
-      />
-      */}
-      <Term
-        {...defaultConfig}
-        ref_={setRef}
-        onResize={() => {}}
-        onActive={() => {}}
-      />
+    <div className={theme.avatarLine}>
+      <div className={theme.avatarHolder}>
+        <div className={theme.avatar} />
+      </div>
     </div>
+    <Container>
+      <div className={theme.term}>
+        <Term
+          {...defaultConfig}
+          ref_={setRef}
+          onResize={() => {}}
+          onActive={() => {}}
+        />
+      </div>
+    </Container>
     <div className={theme.footer}>
-      <a className={theme.link} href={'https://github.com/istarkov/pbl'}>A simple deploy tool</a>
+      <Container theme={theme} themeNamespace={'footer'}>
+        <span className={theme.team}>team</span> &nbsp;CecTPa yTky MHe
+      </Container>
     </div>
   </div>
 );
