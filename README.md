@@ -1,20 +1,20 @@
 # pbl
 
-`pbl` allows you to make fast and easy deployment of your Docker powered applications and services.
-Any directory that contains a Dockerfile can be deployed with one command: `pbl`.
+`pbl` gives users the ability to make fast and easy deployment of their Docker powered applications and services onto their server.
+Any directory that contains a Dockerfile can be deployed with just one command: `pbl`.
 
-Every time you deploy a project, `pbl` (by default) will provide you immediately with a new unique URL.
-Until build process will be finished, full-featured view-only terminal with all the build process output
-will be available at provided URL.
+Every time a user deploys a project, `pbl` (by default), will immediately
+provide a new unique URL.
+While the build process runs, a full-featured, view-only terminal with all the build
+process output will be available at the provided URL.
 
-If build process was finished successfully the app itself will be available at same URL,
-otherwise terminal with build process output and error will be available.
+If the build process is successful, the app itself will become available at the same URL, otherwise the terminal with the build process output and error(s) will remain available.
 
 ## Client install
 
 ### Prerequisites
 
-To make it work you need to have nodejs installed on the client machine.
+To make pbl work, nodejs needs to be installed on the client machine.
 
 ### Install
 
@@ -53,11 +53,11 @@ Clone current project.
 
 Open `example` dir and run `pbl`, project will be published at `{rnd}.{YOUR DOMAIN}` host.
 
-Run `pbl --name hello` then project will be published at `hello.{YOUR DOMAIN}` host.
+Run `pbl --name hello` then the project will be published at `hello.{YOUR DOMAIN}` host.
 
 To use dockerfile with other name than `Dockerfile` just run as `pbl --dockerFile ./DockerfileOther`
 
-By default `pbl` runs deploy in detached mode, and exits almost immediately after run,
+By default `pbl` runs deploys in detached mode, and exits almost immediately after running,
 but sometimes if you need more control you can run `pbl` in `attached` mode,
 just add `--attached true`
 
@@ -66,14 +66,13 @@ To pass ARGs to Docker build, just append them as an example `build-arg`.
 
 ## Server cleanup
 
-As mostly all this containers does not needed after few days, just add command into `cron`
+As most of the time all these containers are no longer needed after a few days, just add the following command into `cron`:
 
 ```bash
 pbls clean --days {X}
 ```
 
-This command will stop all the containers before `current date` - `{X}` days,
-and also will clean all exited containers.
+This command will stop all containers that were started before `current date` - `{X}` days, and will also clean all exited containers.
 
 For full cleanup run:
 

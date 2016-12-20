@@ -15,8 +15,8 @@ provide a new unique URL. While the build process runs,
 a full-featured, view-only terminal with all the build
 process output will be available at the provided URL.
 
-If the build process concludes successfully, the app
-itself will be available at the same URL,
+If the build process is successful, the app
+itself will become available at the same URL,
 otherwise the terminal with the build process output and error(s) will remain available.
 
 *More information available [here](https://github.com/istarkov/pbl)*
