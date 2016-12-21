@@ -12,7 +12,7 @@ if (process.env.NODE_ENV !== 'production') {
   throw new Error('Production builds must have NODE_ENV=production.');
 }
 
-const publicPath = '/';
+const publicPath = process.env.BUILD ? '/pbl/' : '/';
 
 const envObj = Object.keys(process.env)
   .reduce((r, k) => ({
