@@ -61,7 +61,7 @@ By default `pbl` runs deploys in detached mode, and exits almost immediately aft
 but sometimes if you need more control you can run `pbl` in `attached` mode,
 just add `--attached true`
 
-To pass ARGs to Docker build, just append them as an example `build-arg`.
+To pass ARGs to Docker build, just append `--build-arg` like
 `pbl --name hello --build-arg PARAM=LALA`
 
 ## Server cleanup
