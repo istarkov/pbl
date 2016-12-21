@@ -66,3 +66,11 @@ docker ps -a --filter "label=pbl" --format "{{.ID}}#{{.CreatedAt}}#{{.Names}}" |
 echo 'Start deleting...'
 
 docker rm -f $(docker ps -a --no-trunc --filter "label=pbl" --format "{{.ID}}#{{.CreatedAt}}#{{.Names}}" | awk -v cd="$CLEANUP_DATE" -F  "#" '{if ($2 <= cd ) print $1}') || echo -e "\nNothing to delete"
+
+echo 'Following images will be deleted'
+
+docker images --filter "label=pbl" --format "{{.ID}}#{{.CreatedAt}}#{{.Repository}}" | awk -v cd="$CLEANUP_DATE" -F  "#" '{if ($2 <= cd ) print $3,$1,$2}'
+
+echo 'Start images deleting...'
+
+docker rmi $(docker images --filter "label=pbl" --format "{{.ID}}#{{.CreatedAt}}#{{.Repository}}" | awk -v cd="$CLEANUP_DATE" -F  "#" '{if ($2 <= cd ) print $1}') || echo -e 'Nothing to delete'
