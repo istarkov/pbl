@@ -86,7 +86,10 @@ export default {
         minifyURLs: true,
       },
     }),
-    new webpack.optimize.CommonsChunkPlugin('vendor', 'static/js/vendor.[chunkhash:8].js'),
+    // new webpack.optimize.CommonsChunkPlugin('vendor', 'static/js/vendor.[chunkhash:8].js'),
+    new webpack.optimize.CommonsChunkPlugin({
+      names: ['vendor', 'manifest'],
+    }),
     new webpack.DefinePlugin({
       'process.env': envObj,
     }),
