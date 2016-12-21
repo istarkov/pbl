@@ -44,7 +44,7 @@ export default {
   },
   output: {
     // The build folder.
-    path: paths.appBuild,
+    path: process.env.BUILD || paths.appBuild,
     // Generated JS file names (with nested folders).
     filename: 'static/js/[name].[chunkhash:8].js',
     chunkFilename: 'static/js/[name].[chunkhash:8].chunk.js',
