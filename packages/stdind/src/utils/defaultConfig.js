@@ -1,3 +1,7 @@
+// ----------------------------------------------------------------
+// MIT Licence, Copyright (c) 2016 Zeit, Inc.
+// ----------------------------------------------------------------
+
 export default {
   // default font size in pixels for all tabs
   fontSize: 12,

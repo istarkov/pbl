@@ -93,9 +93,3 @@ To use locally:
 ## TODO
 
 Add running server output log to some path like `http://{NAME}.{YOUR DOMAIN}/logs`
-
-Issue https://github.com/docker/docker/issues/10613
-
-Change storage driver to overlay2, https://docs.docker.com/engine/userguide/storagedriver/selectadriver/#overlay-vs-overlay2
-For now all inodes have gone on my current config with overlay
-See `df -i`

@@ -1,5 +1,8 @@
 /* eslint-disable */
-// copied from https://github.com/zeit/hyper/blob/master/lib/hterm.js
+
+// ----------------------------------------------------------------
+// MIT Licence, Copyright (c) 2016 Zeit, Inc.
+// ----------------------------------------------------------------
 
 import {hterm, lib} from 'hterm-umdjs';
 import runes from './runes';

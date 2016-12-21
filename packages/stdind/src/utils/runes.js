@@ -1,5 +1,9 @@
 /* eslint-disable */
 
+// ---------------------------------------------------
+// The MIT License (MIT), Copyright (c) 2016 Justin Sippel, Vitaly Domniko
+// ---------------------------------------------------
+
 const HIGH_SURROGATE_START = 0xd800
 const HIGH_SURROGATE_END = 0xdbff
 

@@ -1,5 +1,10 @@
 /* eslint-disable no-underscore-dangle, react/sort-comp */
 /* global Blob,URL,requestAnimationFrame */
+
+// ----------------------------------------------------------------
+// MIT Licence, Copyright (c) 2016 Zeit, Inc.
+// ----------------------------------------------------------------
+
 import React, { Component } from 'react';
 import hterm from './utils/hterm';
 import getColorList from './utils/colors';
