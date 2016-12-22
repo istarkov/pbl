@@ -54,7 +54,7 @@ const buildIndex = process.argv.indexOf('--build');
 if (buildIndex > -1) {
   const execOptions = {
     encoding: 'utf8',
-    cwd: `${__dirname}`,
+    cwd: `${__dirname}/..`,
     stdio: [
       'inherit', // stdin (default)
       'inherit', // stdout (default)
