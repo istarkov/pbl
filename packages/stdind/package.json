@@ -2,7 +2,7 @@
   "name": "stdind",
   "version": "0.1.12",
   "description": "A web-socket server, receives and sends base64 encoded terminal control sequences into socket",
-  "main": "index.js",
+  "main": "server/index.js",
   "scripts": {
     "start": "webpack-dev-server --inline --config './config/webpack.config.dev.babel.js'",
     "start:server": "`npm bin`/pty64 --base64 -- ./examples/longRunning.js | ./index.js --always",
@@ -30,16 +30,16 @@
     "config",
     "examples",
     "images",
+    "server",
     "src",
     ".babelrc",
     ".dockerignore",
     ".eslintrc",
     "Dockerfile",
-    "index.js",
     "yarn.lock"
   ],
   "bin": {
-    "stdind": "./index.js",
+    "stdind": "./server/index.js",
     "stdind-long-running-example": "./examples/longRunning.js"
   },
   "homepage": "https://github.com/istarkov/pbl#readme",
