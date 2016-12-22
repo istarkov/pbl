@@ -1,36 +1,27 @@
-# build
-# docker build -t node-test .
-# run interactive
-# docker run -it --rm -p3000:3000 --name test-node -v "$PWD":/app -w /app 'node-test' /usr/local/bin/dumb-init -- node index.js
-# docker run -it --rm -p 3000:3000 -p 4000:4000 --name test-node 'node-test'
+# Dockerfile optmized for small size
+# docker build -t stdind .
+# pty64 --base64 -- ./examples/longRunning.js | docker run -a STDIN -a STDOUT -i --rm -p 4000:4000 --name stdind 'stdind'
 
-FROM node:6.9.2-wheezy
-
-RUN wget -O /usr/local/bin/dumb-init https://github.com/Yelp/dumb-init/releases/download/v1.1.2/dumb-init_1.1.2_amd64
-RUN chmod +x /usr/local/bin/dumb-init
-
-RUN apt-get update -q && DEBIAN_FRONTEND=noninteractive apt-get install -y locales
-
-RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \
-   locale-gen en_US.UTF-8 && \
-   DEBIAN_FRONTEND=noninteractive dpkg-reconfigure locales && \
-   /usr/sbin/update-locale LANG=en_US.UTF-8
-ENV LC_ALL en_US.UTF-8
-
-RUN npm install --loglevel error --global yarn
+FROM node:6.9.2-alpine
 
 EXPOSE 4000
 
 WORKDIR /app
 
-ADD package.json ./
-ADD yarn.lock ./
-RUN yarn
-
 ADD . ./
 
-# Use pty64 to add pseudotty
-RUN `yarn bin`/pty64 -- yarn run lint
-RUN `yarn bin`/pty64 -- yarn run build
+RUN \
+apk add --no-cache --virtual mydeps openssl python build-base && \
+wget -O /usr/local/bin/dumb-init https://github.com/Yelp/dumb-init/releases/download/v1.1.2/dumb-init_1.1.2_amd64 && \
+chmod +x /usr/local/bin/dumb-init && \
+npm install --loglevel error --global yarn pty64 && \
+cd server && yarn && cd .. && yarn && \
+pty64 -- yarn run lint && \
+pty64 -- yarn run build && \
+rm -rf ./node_modules && \
+yarn cache clean && \
+npm remove --global yarn pty64 && \
+apk del mydeps && \
+rm -rf /var/cache/apk/* /tmp/* /root/.npm /root/.node-gyp /root/.gnupg
 
-CMD /usr/local/bin/dumb-init -- node ./index.js
+CMD /usr/local/bin/dumb-init -- node ./server/index.js

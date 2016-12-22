@@ -1,0 +1,18 @@
+{
+  "name": "stdind-server",
+  "version": "1.0.0",
+  "description": "to minimize docker container size",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "istarkov",
+  "license": "MIT",
+  "dependencies": {
+    "compression": "^1.6.2",
+    "express": "^4.14.0",
+    "js-base64": "^2.1.9",
+    "rxjs": "^5.0.1",
+    "ws": "^1.1.1"
+  }
+}
