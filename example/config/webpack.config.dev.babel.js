@@ -133,13 +133,13 @@ export default {
         ],
       },
       {
-        test: /\.svg$/,
+        test: /\.(?:svg|png|jpg)$/,
         loaders: ['url-loader?limit=7000'],
       },
       {
-        test: /\.png$/,
-        loaders: ['url-loader?limit=7000'],
-      },
+        test: /\.(?:txt)$/,
+        loaders: ['raw-loader'],
+      }
     ],
   },
 };

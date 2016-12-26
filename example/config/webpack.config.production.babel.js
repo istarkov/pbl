@@ -1,11 +1,11 @@
-/* eslint-disable max-len*/
+/* eslint-disable max-len, import/no-extraneous-dependencies */
 import path from 'path';
 import autoprefixer from 'autoprefixer';
 import webpack from 'webpack';
-import babelConfig from './babel.prod';
-import paths from './paths';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import babelConfig from './babel.prod';
+import paths from './paths';
 
 // Development builds of React are slow and not intended for production.
 if (process.env.NODE_ENV !== 'production') {
@@ -154,13 +154,13 @@ export default {
         ],
       },
       {
-        test: /\.svg$/,
+        test: /\.(?:svg|png|jpg)$/,
         loaders: ['url-loader?limit=7000'],
       },
       {
-        test: /\.png$/,
-        loaders: ['url-loader?limit=7000'],
-      },
+        test: /\.(?:txt)$/,
+        loaders: ['raw-loader'],
+      }
     ],
   },
 };

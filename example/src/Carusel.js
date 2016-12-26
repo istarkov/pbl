@@ -4,10 +4,10 @@ import withProps from 'recompose/withProps';
 import { themr } from 'react-css-themr';
 import Slider from 'react-slick';
 import caruselStyles from './carusel.sass';
-import img0 from '../images/0.png';
-import img1 from '../images/1.png';
-import img2 from '../images/2.png';
-import img3 from '../images/3.png';
+import img0 from '../assets/images/0.jpg';
+import img1 from '../assets/images/1.jpg';
+import img2 from '../assets/images/2.jpg';
+import img3 from '../assets/images/3.jpg';
 
 const images = [img0, img1, img2, img3];
 const description = [
