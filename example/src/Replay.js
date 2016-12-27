@@ -8,6 +8,7 @@ import { themr } from 'react-css-themr';
 import replayStyles from './replay.sass';
 import defaultConfig from './utils/defaultConfig';
 import buildReplayData from '../assets/replays/build.txt';
+import errReplayData from '../assets/replays/err.txt';
 import Term from './Term';
 
 export const replay = ({ theme, setRef }) => (
@@ -28,6 +29,16 @@ export const replayHOC = compose(
   themr('replay', replayStyles),
   mapPropsStream((props$) => {
     const { handler: setRef, stream: ref$ } = createEventHandler();
+    const replayData = {
+      build: buildReplayData,
+      err: errReplayData,
+    };
+
+    const replayDelays = {
+      build: 5,
+      err: 50,
+    };
+
     const term$ = ref$
       .filter(ref => ref !== null)
       .withLatestFrom(props$, (ref, props) => ({
@@ -35,11 +46,11 @@ export const replayHOC = compose(
         props,
       }))
       .delay(HAVE_NO_IDEA_WHY_TERM_BREAKS_WITHOUT_DELAY)
-      .switchMap(({ ref /* , props */ }) => {
-        const arr = buildReplayData.split('\n');
+      .switchMap(({ ref, props: { replay: replayKey = 'build' } }) => {
+        const arr = replayData[replayKey].split('\n');
         return Observable.concat(
             ...arr
-            .map(v => Observable.of(v).delay(5))
+            .map(v => Observable.of(v).delay(replayDelays[replayKey]))
         )
         // .do(line => console.log(Base64.decode(line)))
         .do(line => ref.write(Base64.decode(line)));

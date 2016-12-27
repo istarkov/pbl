@@ -9,7 +9,7 @@ import Content from './Content';
 // import Replay from './Replay';
 import layoutStyles from './layout.sass';
 
-async function loadReplay() {
+async function loadReplayPage() {
   return new Promise((r) => {
     require.ensure([], () => {
       const Replay = require('./Replay').default; // eslint-disable-line
@@ -30,9 +30,9 @@ const layoutComponent = ({
           <span>easy deployment tool</span>
         </div>
         <div className={theme.headerMenu}>
-          <span>replays:</span>
+          <span>how it looks like:</span>
           <Link to={'/build'}>build</Link>
-          <Link to={'/build'}>error</Link>
+          <Link to={'/err'}>error</Link>
         </div>
       </Container>
     </div>
@@ -49,14 +49,18 @@ const layoutComponent = ({
         state={state}
         dispatch={dispatch}
       />
-
       <AsyncMatch
         pattern="/build"
-        component={loadReplay}
+        component={loadReplayPage}
         renderLoading={() => <div className={theme.loading}>Loading...</div>}
         replay={'build'}
       />
-
+      <AsyncMatch
+        pattern="/err"
+        component={loadReplayPage}
+        renderLoading={() => <div className={theme.loading}>Loading...</div>}
+        replay={'err'}
+      />
     </Container>
     <div className={theme.footer}>
       <Container theme={theme} themeNamespace={'footer'}>
