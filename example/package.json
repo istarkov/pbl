@@ -7,9 +7,10 @@
   "scripts": {
     "start": "webpack-dev-server --inline --config './config/webpack.config.dev.babel.js'",
     "clean": "rimraf build",
-    "build": "NODE_ENV=production webpack --config './config/webpack.config.production.babel.js' --progress",
+    "build": "yarn run clean;NODE_ENV=production webpack --config './config/webpack.config.production.babel.js' --progress",
     "size": "NODE_ENV=production webpack --config './config/webpack.config.production.babel.js' --json | webpack-bundle-size-analyzer",
-    "pages": "rimraf ../docs;BUILD=../docs NODE_ENV=production webpack --config './config/webpack.config.production.babel.js' --progress",
+    "makelinks": "ln -s ../docs/index.html ../docs/build.html;ln -s ../docs/index.html ../docs/err.html",
+    "pages": "rimraf ../docs;BUILD=../docs NODE_ENV=production webpack --config './config/webpack.config.production.babel.js' --progress;yarn run makelinks",
     "lint": "eslint src"
   },
   "author": "istarkov",
