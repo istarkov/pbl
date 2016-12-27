@@ -25,13 +25,15 @@ const layoutComponent = ({
       </div>
     </div>
     <Container>
-      <div className={theme.term}>
-        <Term
-          {...defaultConfig}
-          ref_={setRef}
-          onResize={() => {}}
-          onActive={() => {}}
-        />
+      <div className={theme.termMain}>
+        <div className={theme.term}>
+          <Term
+            {...defaultConfig}
+            ref_={setRef}
+            onResize={() => {}}
+            onActive={() => {}}
+          />
+        </div>
       </div>
     </Container>
     <div className={theme.footer}>

@@ -8,11 +8,15 @@
   flex-direction: column
   position: relative
 
+.termMain
+  flex: 1
+  display: flex
+  overflow-x: scroll
+
 .term
   flex: 1
   display: flex
-  flex-direction: column
-  margin: 0 0 0 0
+  min-width: 600px
 
 .avatarLine
   height: 0
@@ -47,6 +51,9 @@
   SPAN
     font-size: 10px
     margin-left: 4px
+  @media only screen and (max-width: 550px)
+    SPAN
+      display: none
 
   .headerContent
     align-items: baseline

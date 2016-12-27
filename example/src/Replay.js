@@ -13,13 +13,14 @@ import Term from './Term';
 
 export const replay = ({ theme, setRef }) => (
   <div className={theme.main}>
-    <Term
-      {...defaultConfig}
-      ref_={setRef}
-      onResize={() => {}}
-      onActive={() => {}}
-      // replay={replays[replay]}
-    />
+    <div className={theme.term}>
+      <Term
+        {...defaultConfig}
+        ref_={setRef}
+        onResize={() => {}}
+        onActive={() => {}}
+      />
+    </div>
   </div>
 );
 
