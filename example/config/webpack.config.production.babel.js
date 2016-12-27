@@ -67,6 +67,7 @@ export default {
   postcss: [
     autoprefixer({ browsers: ['last 2 versions'] }),
   ],
+  recordsPath: path.resolve(__dirname, '.webpack-records.json'),
   plugins: [
     // Generates an `index.html` file with the <script> injected.
     new HtmlWebpackPlugin({
