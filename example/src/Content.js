@@ -24,7 +24,6 @@ otherwise the terminal with the build process output and error(s) will remain av
 
 export const content = ({ theme }) => (
   <div className={theme.main}>
-    <div className={theme.avatar} />
     <div className={theme.data}>
       <Data />
     </div>

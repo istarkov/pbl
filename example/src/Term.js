@@ -312,9 +312,8 @@ export default class Term extends Component {
         onMouseDown={this.handleMouseDown}
         style={{
           padding: this.props.padding,
-          display: 'block',
-          width: '100%',
-          height: '100%',
+          display: 'flex',
+          flex: '1',
         }}
       >
         { this.props.customChildrenBefore }
@@ -323,9 +322,8 @@ export default class Term extends Component {
             this.termRef = component;
           }}
           style={{
-            display: 'block',
-            width: '100%',
-            height: '100%',
+            display: 'flex',
+            flex: '1',
             position: 'relative',
           }}
         />

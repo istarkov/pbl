@@ -13,7 +13,7 @@ export default {
   cursorColor: 'rgba(248,28,229,0.8)',
 
   // `BEAM` for |, `UNDERLINE` for _, `BLOCK` for █
-  cursorShape: 'BLOCK',
+  cursorShape: 'UNDERLINE',
 
   // color of the text
   foregroundColor: '#fff',

@@ -410,10 +410,12 @@ hterm.Terminal.prototype.onHyperCaret = function (caret) {
 // ensure that our contenteditable caret is injected
 // inside the term's cursor node and that it's focused
 hterm.Terminal.prototype.focusHyperCaret = function () {
+  /*
   if (!this.hyperCaret.parentNode !== this.cursorNode_) {
     this.cursorNode_.appendChild(this.hyperCaret);
   }
   this.hyperCaret.focus();
+  */
 };
 
 hterm.Screen.prototype.syncSelectionCaret = function () {

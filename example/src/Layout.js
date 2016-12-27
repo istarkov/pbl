@@ -36,6 +36,11 @@ const layoutComponent = ({
         </div>
       </Container>
     </div>
+    <div className={theme.avatarLine}>
+      <div className={theme.avatarHolder}>
+        <div className={theme.avatar} />
+      </div>
+    </div>
     <Container>
       <MatchWithProps
         exactly
