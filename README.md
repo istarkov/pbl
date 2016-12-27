@@ -84,11 +84,13 @@ pbls clean --days 0
 
 To use locally:
 
-* add `127.0.0.1       *.localhost` to `/etc/hosts`,
+* `npm install`
 
-* initialize pbls as `./packages/pbls/index.js init --domain localhost`
+* add `127.0.0.1  *.localhost` to `/etc/hosts`,
 
-* then `example` or any Dockerfile folder run local pbl in dev mode like `../packages/pbl/index.js --mode dev`
+* initialize `pbls` by running it directly as `./packages/pbls/index.js init --domain localhost`
+
+* then `cd` `example` or any Dockerfile folder and run local pbl in dev mode like `../packages/pbl/index.js --mode dev`
 
 ## TODO
 

@@ -14,17 +14,32 @@
   align-items: center
   color: #999
 
-  H1
+  H1, A
     color: #20BEFF
+    text-decoration: none
   SPAN
     font-size: 10px
     margin-left: 4px
+  .headerMenu
+    A
+      font-size: 14px
+      margin-left: 6px
+      &+A
+        margin-left: 6px
 
   .headerContent
+    justify-content: space-between
     align-items: baseline
 
-.headerText
-  margin: 10px 0
+  .headerLeft
+    display: flex
+    align-items: baseline
+
+    .headerText
+      margin: 10px 0
+
+.loading
+  margin: auto
 
 .footer
   font-size: 0.8rem
@@ -41,3 +56,24 @@
 .team
   color: #999
   font-size: 10px
+
+.avatarLine
+  height: 0
+  position: relative
+  pointer-events: none
+
+.avatarHolder
+  position: absolute
+  left: 0
+  right: 0
+  display: flex
+  top: -41px
+  z-index: 1
+
+.avatar
+  background-image: url('../assets/images/avatar.svg')
+  background-size: contain
+  background-repeat: no-repeat
+  height: 66px
+  width: 150px
+  margin: 0 auto
