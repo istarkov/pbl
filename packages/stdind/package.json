@@ -1,6 +1,6 @@
 {
   "name": "stdind",
-  "version": "0.1.15",
+  "version": "0.1.16",
   "description": "A web-socket server, receives and sends base64 encoded terminal control sequences into socket",
   "main": "server/index.js",
   "scripts": {
