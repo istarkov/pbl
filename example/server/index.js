@@ -2,6 +2,8 @@ const express = require('express');
 const compression = require('compression');
 const path = require('path');
 const { Server } = require('http');
+const os = require('os');
+
 
 const WS_PORT = 4000;
 
@@ -10,6 +12,10 @@ const server = Server(app);
 
 app.use(compression());
 app.use(express.static(path.join(__dirname, '../build')));
+
+app.get('/hostname', (req, res) => {
+  res.send('hostname' + os.hostname()); // eslint-disable-line
+});
 
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../build', 'index.html'));
